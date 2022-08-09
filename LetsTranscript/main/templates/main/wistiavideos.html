@@ -1,0 +1,250 @@
+{% extends "main/base.html" %}
+{% block head %}
+<meta property="og:title" content="Wistia - Video Subtitle | Captioning - Video Marketing">
+<meta property="og:description" content="Get Wistia captions and subtitles by professionals that are accurate starting at just ($0.80/min). LetsTranscript video captioning services are the most trusted among the top content creators for video captioning and subtitling.">
+<meta name="description" content="Get Wistia captions and subtitles by professionals that are accurate starting at just ($0.80/min). LetsTranscript video captioning services are the most trusted among the top content creators for video captioning and subtitling.">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta name="msvalidate.01" content="9AA8A69BE44ACB2BE1865AA094802DDF" />
+{% endblock head %}
+{% block content %}
+<section id="hero" class="d-flex align-items-center">
+    <div class="container-fluid" data-aos="fade-up">
+        <div class="row text-center justify-content-center">
+            <h1 class="text-dark">Wistia - Video Subtitle | Captioning - Video Marketing</h1>
+            <div>
+                <a href="{% url 'upload' %}" class="btn-get-started scrollto">$0.60/minute</a>
+                <a href="{% url 'upload' %}" class="btn-success btn-get-started  scrollto">Upload Files</a>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <p class="uyshjgdiku mt-4">
+                When it comes to generating new leads on the internet, video marketing is amongst the most rapidly developing methods. Enormous file sizes are common when it comes to videos, which is why many organizations choose to put their videos on video hosting platforms in order to avoid having large files slow down their websites. If you want to host videos for your company, Wistia is one of the greatest websites for you.
+            </p>
+            <p class="uyshjgdiku">
+                Many companies use YouTube to store the videos as they are in the process of generating them. To be honest, there are many more choices open to you than YouTube, particularly Wistia, which we will discuss below.
+            </p>
+            <p class="uyshjgdiku">
+                In only a few minutes, you can make a quality video on the video hosting website. You may easily produce movies by just utilizing the camera on your computer.
+            </p>
+            <p class="uyshjgdiku">
+                Wistia provides sophisticated tools to assist marketers in making the most of their video content. Additionally, you'll get a customized player, which enables you to determine how your video player appears to consumers when they see it, as well as complete data to assist you in making the most of successful video marketing efforts. You can simply create, advertise, and measure your films using Wistia's simple interface.
+            </p>
+            <p class="uyshjgdiku">
+                Wistia videos automatically adjust to any screen size. You may include your films in your emails, publish them on social networking sites, and upload them on your website, among other methods of distribution. Wistia also provides you with the ability to manage who may upload your movies and where they can be posted, among other things.
+            </p>
+            <p class="uyshjgdiku">
+                Not only does Wistia assist your company, but it also enriches your target audience as a whole. Wistia continuously monitors each viewer's connection to guarantee that they are receiving the highest possible viewing experience with their particular connection. Moreover, they take steps to guarantee that your films are buffered as little as possible.
+            </p>
+            <p class="uyshjgdiku">
+                Do you have a large number of videos saved or uploaded to your Wistia account? You're searching for a business that can transcribe them as well, right? You would, however, want to avoid the inconveniences of uploading and downloading, wouldn't you? Then you have arrived to the appropriate website.
+            </p>
+            <p class="uyshjgdiku">
+                It is true that LetsTranscript's brand new and secure online portal offers all of the capabilities you could possibly want and it is really simple to use.
+            </p>
+            <p class="uyshjgdiku">
+                When you upload a Wistia video, you can acquire transcripts and captions for it via an automatic procedure. LetsTranscript process is fully automated, needing just a few simple inputs from you; you have complete control over your options, which include varied turnaround times, time-coding, language translations, and so on.
+            </p>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-4">
+            <div class="text-center">
+                <img class="col-md-12 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/march/trp.png" alt="Card image cap">
+            </div>
+            <div class="text-center">
+                <img class="col-md-12 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/march/ec.webp" alt="Card image cap">
+            </div>
+            <section id="contact" class="contact">
+                <div class="container" data-aos="fade-up">
+                    <div class="row">
+                        <form action="{% url 'contact-us' %}" method="post" role="form" class="php-email-form">
+                            <div class="container text-center">
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            {% csrf_token %}
+                            <p class="uyshjgdiku fw-bold text-center">Get a FREE QUOTE</p>
+                            <p>24 hours. That's all it will take you to figure out the cost benefits of outsourcing!</p>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input required type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:2" data-msg="Please enter at least 2 chars" />
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input required type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <input required type="text" name="phone" class="form-control" id="phone" placeholder="Phone Eg. +1 813-721-7155" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input required type="text" class="form-control" name="country" id="country" placeholder="Country" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <input required type="text" class="form-control" name="companyname" id="companyname" placeholder="Company Name" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input required type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" id="message" rows="3" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validate"></div>
+                            </div>
+                            <div class="mt-4 row">
+                                <div class="col-md-12">
+                                    <div class="g-recaptcha" data-sitekey="6LeQRZUdAAAAABVkblnamhLuCy6c_SVxxnwjwUK-" data-callback="enableBtn"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="loading">Loading</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Your message has been sent. Thank you!</div>
+                            </div>
+                            <div class="text-center"><button disabled onclick="this.blur();" id="submitbutton" type="submit">Submit</button></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<section id="faq" class="faq mt-5">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Frequently Asked Questions - Transcription - LetsTranscript</h2>
+        </div>
+        <div class="faq-list">
+            <ul>
+                <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
+                    <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">How much do you charge? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                        <p>
+                            LetsTranscript pricing starts from $0.80 per minute of audio. For instance, a 60 minute clip costs $48.<br>
+                            There is no additional cost for multiple speakers, heavy-accent and there is no sales tax. All the recordings will be round up to the nearest whole minute.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">How long does it take to deliver the transcripts? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Files with good audio quality are delivered within the chosen turnaround time. For files with poor audio quality, it may take longer.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="300">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Do you transcribe multi-speaker recordings? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Yes, we transcribe multi-speaker recordings and we charge the same price: $0.80 per minute. We label speakers appropriately "speaker 1", "speaker 2", etc.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="400">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Do you provide volume discounts? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Yes, we offer volume discounts for qualifying customers. Contact our support team to learn more.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Do you offer transcription services in other languages?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Yes, we offer automated transcription for more than 30 languages.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">How do you keep information confidential?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            All our professionals have signed strict confidentiality agreements and the sensitive data of our clients is only disclosed in our secure platform.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-7" class="collapsed">Will LetsTranscript sign a non-disclosure agreement?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            We follow strict NDA norms to ensure confidentiality and data protection of our clients. This contract can be unilateral or mutual, we are happy to sign your NDA, or we can supply one for you.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-8" class="collapsed">How do you protect my files?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            We encrypt all data - both in transit and where it is stored on our protected Symantec servers. Your files are securely stored and transmitted using TLS 1.2 encryption consisting of bank-level security. To decode this idiom, it would take years to break this encryption and compromise our security.
+                            <br>
+                            Our TLS encryption protocols fully guarantee the security of communications for all data exchanged.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-9" class="collapsed">How do you protect my payment information?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-9" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            We never store any credit card information - we simply pass it securely to our bank for safe-keeping. LetsTranscript maintains a PCI certification for payment processing.
+                        </p>
+                    </div>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="500">
+                    <a data-bs-toggle="collapse" data-bs-target="#faq-list-10" class="collapsed">Where can I find more information on LetsTranscript security and privacy policy?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-10" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            For more information please visit our Security and Privacy Page. <br>
+                            Contact Us for any additional details and queries on security and privacy.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</section>
+<div class="yrnirhjeh">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Get Started</h2>
+                <a href="{% url 'upload' %}" class="btn bg-white mt-3 mb-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Order Now</a>
+                <h3 class="text-white h5">★★★★★ 4.9/5 &nbsp; | &nbsp;<a href="#" class="text-white h5"><u>1846 customer reviews</u></a></h3>
+            </div>
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Have a large project?</h2>
+                <a href="{% url 'contact-us' %}" class="btn bg-white mt-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+function enableBtn() {
+    document.getElementById("submitbutton").disabled = false;
+}
+var sendmessage = document.getElementById('submitbutton');
+placingordernow = '<svg xmlns="http://www.w3.org/2000/svg" class="waveheight" viewBox="0 0 76 26"><g id="audio-wave" data-name="audio-wave"><rect id="wave-5" class="wave" x="32" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4" class="wave" x="24" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3" class="wave" x="16" width="4" height="26" rx="2" ry="2" /><rect id="wave-2" class="wave" x="8" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1" class="wave" y="9" width="4" height="8" rx="2" ry="2" /><rect id="wave-5-2" data-name="wave-4" class="wave" x="72" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4-2" data-name="wave-5" class="wave" x="64" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3-2" data-name="wave-3" class="wave" x="56" width="4" height="26" rx="2" ry="2" /><rect id="wave-2-2" data-name="wave-2" class="wave" x="48" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1-2" data-name="wave-1" class="wave" x="40" y="9" width="4" height="8" rx="2" ry="2" /></g></svg>'
+$("#submitbutton").on('click', function(e) {
+    sendmessage.innerHTML = placingordernow
+});
+</script>
+{% endblock content %}

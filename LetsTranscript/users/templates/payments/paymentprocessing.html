@@ -1,0 +1,76 @@
+{% extends "main/base.html" %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Add Credits</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class=" container mt-5">
+    <div class="section-title">
+        <h2>Add Credits</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="shadow-lg text-center p-3 mb-5 bg-white rounded">
+                <h5 class="card-title">Please make a payment of ${{amountpayable}} to place the order.</h5><br><br>
+                <div id="paypal-button"></div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<script>
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+});
+</script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+var currenturl = document.URL.split('/')
+uniqueid = currenturl[6]
+amountpayable = currenturl[5].replace('b8204657188fae32a6c884d4f9dfabbdcc1ba843', '').replace('627bc999f7d73398fd9a93fd67dbb15e0ad691377b', '')
+var CREATE_PAYMENT_URL = '/users/insufficientfunds/' + uniqueid + '/' + amountpayable + '/'
+var EXECUTE_PAYMENT_URL = '/users/executepayment/' + uniqueid + '/' + amountpayable + '/'
+paypal.Button.render({
+    env: 'production',
+    commit: true,
+    payment: function() {
+        return paypal.request.post(CREATE_PAYMENT_URL, amountpayable).then(function(data) {
+            return data.paymentID;
+        });
+    },
+    onAuthorize: function(data) {
+        return paypal.request.post(EXECUTE_PAYMENT_URL, {
+            paymentID: data.paymentID,
+            payerID: data.payerID,
+        }).then(function(res) {
+            console.log(res)
+            if (res.success == 'completed') {
+                window.location.replace("/users/orderplaced/");
+                $.ajax({
+                    type: "POST",
+                    // cache: true,
+                    // async: false,
+                    // headers: {
+                    //     "cache-control": "no-cache"
+                    // },
+                    url: '/users/placeorderafterpayment/' + res.uniqueid + '/',
+                    data: JSON.stringify(res),
+                    dataType: 'json'
+                })
+            } else {
+                window.location.replace("/orderfailed");
+            }
+        });
+    },
+}, '#paypal-button');
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+{% endblock content %}

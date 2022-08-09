@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+{% block head %}
+<meta name="title" content="Foreign Subtitles - Global Audience - Translate">
+<meta name="og:title" content="Foreign Subtitles - Global Audience - Translate">
+<meta name="og:description" content="Translation agency specialized in Foreign Subtitle Services. We provide Subtitling services as the ideal solution for anyone who needs to broadcast their audiovisual content to an international audience while maintaining their original audio.">
+<meta name="description" content="Translation agency specialized in Foreign Subtitle Services. We provide Subtitling services as the ideal solution for anyone who needs to broadcast their audiovisual content to an international audience while maintaining their original audio.">
+<meta name="keywords" content="Subtitling services,audiovisual content,international audience,original audio,online multimedia distribution platforms,translating subtitles,translation agency,subtitling professionals,multilingual">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+{% endblock head %}
+{% block content %}
+<section id="hero" class="d-flex align-items-center">
+    <div class="container-fluid" data-aos="fade-up">
+        <div class="row text-center justify-content-center">
+            <h1>Foreign Subtitle Services</h1>
+            <h2 class="p">Order Online ($ 1.7 per audio minute)</h2>
+            <div><a href="{% url 'upload' %}" class="btn-get-started scrollto">Upload Files</a></div>
+        </div>
+    </div>
+</section>
+<div class="container shadow-lg p-3 mb-2 mt-3 bg-body rounded">
+    <div class="section-title mt-4">
+        <h2>Foreign Subtitles</h2>
+    </div>
+    <p>
+        Subtitling services are the ideal solution for anyone who needs to broadcast their audiovisual content to an international audience while maintaining their original audio. <br><br>
+        Subtitles are widespread on the main online multimedia distribution platforms; in fact, more and more users are choosing this option, as it allows you to understand the message, also fully grasping its intonation and original intention. Furthermore, translating subtitles is particularly suitable for the business communication sector, where respect for the original intention of audiovisual content is fundamental.
+    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                The support of a translation agency specialized in subtitling will guarantee you an unparalleled product that will bring the success of your company on all screens in the world.
+                Subtitles are a very popular audiovisual translation mode, which allows an international audience to understand a video without affecting the original audio content. <br><br>
+                The subtitling technique follows strict and precise rules: the subtitle, for example, cannot occupy more than two lines on the screen, it must contain a certain number of characters and time spent on the screen must be very precise, to keep up with the dialogue and at the same time be easily readable by the public. The correct transposition of the oral message in written form, therefore, requires specific skills and long experience gained in the field. <br><br>
+                LetsTranscript has best subtitling professionals, capable of packaging subtitled videos with the utmost accuracy and processing any type of file format to respond efficiently to the needs of your company.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img class="photo card-img-top" data-src="../static/assets/img/foreign.jpg" alt="image.jpg"><br>
+        </div>
+    </div>
+</div>
+{% endblock content %}

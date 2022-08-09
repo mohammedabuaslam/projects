@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Cancellation</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="container shadow-sm p-3 mt-2 mb-5 bg-body rounded">
+    <div class="section-title mt-4">
+        <h2>Our Cancellation Policy</h2>
+    </div>
+    <h4 class="fw-bold">When is a customer eligible for a refund? </h4>
+    <p>
+        The transcription or translation order cannot be cancelled once the process has been started. <br><br>
+        Once the transcription or translation has been delivered, you can opt for free re-review if you find the accuracy of the transcription is as promised by the website. <br><br>
+        However, we offer refunds if the guaranteed transcription or translation accuracy for your order is not fullfilled. <br><br>
+        The refund amount, however, depends on the accuracy of the transcription or translation. If the accuracy of transcription or translation is less than 80%, then 40% of the total amount paid for this transaction will be refunded, and lesser as the accuracy decreases. <br><br>
+        However, if the accuracy is less than 50%, then the full amount will be refunded. <br><br>
+        The accuracy of transcription is calculated on the audible voices in the audio/video data provided by the customer. <br><br>
+        If more than 25% of the total audio/video data is not audible then the refund is not applicable on the transcription or translation service opted for the respective audio/video data. <br><br>
+        The refund is processed in 3 business days. <br><br>
+        The refund amount is either added to letstranscript wallet or transferred to original mode of payment during the transaction.
+    </p>
+    <div class="text-center"><a href="{% url 'contact-us' %}" class="btn btn-info">Contact Us</a></div>
+</div>
+{% endblock content %}

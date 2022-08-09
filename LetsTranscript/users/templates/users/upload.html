@@ -1,0 +1,646 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'addcreditstowallet' %}">Add Credits</a></li>
+                <li>Upload &nbsp;</li>
+                <strong>(Wallet: $ {{user.credits}})</strong>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="spacing"></div>
+<h2 class="mb-3 mt-5 text-center">UPLOAD FILES</h2>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col shadow p-3 mb-5 bg-white rounded">
+            <div class="mb-3 mt-3">
+                <div class="form-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="file_input" id="file_input" oninput="input_filename();">
+                        <label id="file_input_label" class="custom-file-label" for="image">Select file</label>
+                    </div>
+                </div>
+                <button onclick="upload('{{ request.url }}');" id="upload_btn" class="btn btn-primary">Upload</button>
+                <button class="btn btn-primary d-none" id="loading_btn" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Uploading...
+                </button>
+                <button type="button" id="cancel_btn" class="btn btn-secondary d-none">Cancel upload</button>
+            </div>
+            <div id="progress_wrapper" class="d-none">
+                <label id="progress_status"></label>
+                <div class="progress mb-3">
+                    <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div id="alert_wrapper"></div>
+            <div class="row mt-2">
+                <div class="col-sm-6 py-2">
+                    <div class="card card-body h-100">
+                        <h5 class="card-title"><strong>Transcription Type:</strong></h5>
+                        <div class="form-check">
+                            <label class="form-check-label" for="human-generated"><input checked type="radio" class="form-check-input" value="0.8" id="human-generated" name="transcriptiontype">Human Transcription </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="automated"><input type="radio" class="form-check-input" value="0.1" name="transcriptiontype">Automated Transcription </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="humangeneratedturnaround">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Turnaround Time:</strong></h5>
+                            <div class="form-check">
+                                <label class="form-check-label" for="3days"><input type="radio" class="form-check-input" value="0" id="3days" name="turnaroundtime" checked>3 Days</label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="1day"><input type="radio" class="form-check-input" value="0.2" id="1day" name="turnaroundtime">1 Day</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="automatedturnaroundtime">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Turnaround Time:</strong></h5>
+                            <p class="card-text">Turnaround time for automated transcription is less than 4 hours.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="verbatimtype">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Verbatim Type:</strong></h5>
+                            <div class="form-check">
+                                <label class="form-check-label" for="cleanverbatim"><input type="radio" class="form-check-input" value="0" id="cleanverbatim" name="verbatimtype" checked><strong>Clean Verbatim</strong> (remove all stutters)</label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="fullverbatim"><input type="radio" class="form-check-input" value="1" id="fullverbatim" name="verbatimtype"><strong>Full Verbatim</strong> (keep all stutters)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Subtitles:</strong></h5>
+                            <div class="form-check">
+                                <label class="form-check-label" for="captionsno"><input type="radio" class="form-check-input" value="0" id="captionsno" name="subtitles" checked>No</label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="captionsyes"><input type="radio" class="form-check-input" value="1" id="captionsyes" name="subtitles">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="humangeneratedlanguage">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Choose Language of the uploaded file:</strong></h5>
+                            <select class="form-select" id="humangeneratedlanguagevalue">
+                                <div id="selectlanguage" class="pre-scrollable text-center">
+                                    <option value="en-US">US English (en-US)</option>
+                                    <option value="en-GB">British English (en-GB)</option>
+                                    <option value="en-AU">Australian English (en-AU)</option>
+                                    <option value="en-IN">Indian English (en-IN)</option>
+                                    <option value="en-IE">Irish English (en-IE)</option>
+                                    <option value="en-AB">Scottish English (en-AB)</option>
+                                    <option value="en-WL">Welsh English (en-WL)</option>
+                                </div>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="numberofspeakers">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Number of speakers:</strong></h5>
+                            <input type="number" id="noofspeakers" class="input form-control form-control-lg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="foreignsubtitles">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Foreign Subtitles:</strong></h5>
+                            <div class="form-check">
+                                <label class="form-check-label" for="foreigncaptionsno"><input type="radio" class="form-check-input" value="0" id="foreigncaptionsno" name="foreignsubtitles" checked>No</label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="foreigncaptionsyes"><input type="radio" class="form-check-input" value="1" id="foreigncaptionsyes" name="foreignsubtitles">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="automatedlanguage">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Choose Language of the uploaded file:</strong></h5>
+                            <select class="form-select" id="automatedlanguagevalue">
+                                <div id="selectlanguage" class="pre-scrollable text-center">
+                                    <option value="en-US">US English (en-US)</option>
+                                    <option value="en-GB">British English (en-GB)</option>
+                                    <option value="en-AU">Australian English (en-AU)</option>
+                                    <option value="en-IN">Indian English (en-IN)</option>
+                                    <option value="en-IE">Irish English (en-IE)</option>
+                                    <option value="en-AB">Scottish English (en-AB)</option>
+                                    <option value="en-WL">Welsh English (en-WL)</option>
+                                    <option value="es-ES">Spanish (es-ES)</option>
+                                    <option value="es-US">US Spanish (es-US)</option>
+                                    <option value="fr-FR">French (fr-FR)</option>
+                                    <option value="fr-CA">Canadian French (fr-CA)</option>
+                                    <option value="nl-NL">Dutch (nl-NL)</option>
+                                    <option value="fa-IR">Farsi (fa-IR)</option>
+                                    <option value="de-DE">German (de-DE)</option>
+                                    <option value="de-CH">Swiss German (de-CH)</option>
+                                    <option value="ar-AE">Gulf Arabic (ar-AE)</option>
+                                    <option value="ar-SA">Modern Standard Arabic (ar-SA)</option>
+                                    <option value="zh-CN">Chinese Mandarin - Mainland (zh-CN)</option>
+                                    <option value="he-IL">Hebrew (he-IL)</option>
+                                    <option value="hi-IN">Indian Hindi (hi-IN)</option>
+                                    <option value="id-ID">Indonesian (id-ID)</option>
+                                    <option value="it-IT">Italian (it-IT)</option>
+                                    <option value="ja-JP">Japanese (ja-JP)</option>
+                                    <option value="ko-KR">Korean (ko-KR)</option>
+                                    <option value="ms-MY">Malay (ms-MY)</option>
+                                    <option value="pt-PT">Portuguese (pt-PT)</option>
+                                    <option value="pt-BR">Brazilian Portuguese (pt-BR)</option>
+                                    <option value="ru-RU">Russian (ru-RU)</option>
+                                    <option value="ta-IN">Tamil (ta-IN)</option>
+                                    <option value="te-IN">Telugu (te-IN)</option>
+                                    <option value="tr-TR">Turkish (tr-TR)</option>
+                                </div>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 py-2" id="foreignlanguage">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Choose Language for Foreign Subtitles:</strong></h5>
+                            <select class="form-select" id="foreignlanguagevalue">
+                                <div id="selectlanguage" class="pre-scrollable text-center">
+                                    <option value="None">Select Language</option>
+                                    <option value="en">English</option>
+                                    <option value="af">Afrikaans</option>
+                                    <option value="sq">Albanian</option>
+                                    <option value="am">Amharic</option>
+                                    <option value="ar">Arabic</option>
+                                    <option value="az">Azerbaijani</option>
+                                    <option value="bn">Bengali</option>
+                                    <option value="bs">Bosnian</option>
+                                    <option value="bg">Bulgarian</option>
+                                    <option value="zh">Chinese (Simplified)</option>
+                                    <option value="zh-TW">Chinese (Traditional)</option>
+                                    <option value="hr">Croatian</option>
+                                    <option value="cs">Czech</option>
+                                    <option value="da">Danish</option>
+                                    <option value="fa-AF">Dari</option>
+                                    <option value="nl">Dutch</option>
+                                    <option value="et">Estonian</option>
+                                    <option value="fi">Finnish</option>
+                                    <option value="fr">French</option>
+                                    <option value="fr-CA">French (Canada)</option>
+                                    <option value="ka">Georgian</option>
+                                    <option value="de">German</option>
+                                    <option value="el">Greek</option>
+                                    <option value="ha">Hausa</option>
+                                    <option value="he">Hebrew</option>
+                                    <option value="hi">Hindi</option>
+                                    <option value="hu">Hungarian</option>
+                                    <option value="id">Indonesian</option>
+                                    <option value="it">Italian</option>
+                                    <option value="ja">Japanese</option>
+                                    <option value="ko">Korean</option>
+                                    <option value="lv">Latvian</option>
+                                    <option value="ms">Malay</option>
+                                    <option value="no">Norwegian</option>
+                                    <option value="fa">Persian</option>
+                                    <option value="ps">Pashto</option>
+                                    <option value="pl">Polish</option>
+                                    <option value="pt">Portuguese</option>
+                                    <option value="ro">Romanian</option>
+                                    <option value="ru">Russian</option>
+                                    <option value="sr">Serbian</option>
+                                    <option value="sk">Slovak</option>
+                                    <option value="sl">Slovenian</option>
+                                    <option value="so">Somali</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="es-MX">Spanish (Mexico)</option>
+                                    <option value="sw">Swahili</option>
+                                    <option value="sv">Swedish</option>
+                                    <option value="tl">Tagalog</option>
+                                    <option value="ta">Tamil</option>
+                                    <option value="th">Thai</option>
+                                    <option value="tr">Turkish</option>
+                                    <option value="uk">Ukrainian</option>
+                                    <option value="ur">Urdu</option>
+                                    <option value="vi">Vietnamese</option>
+                                </div>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" id="commentsornotes">
+                    <div class="h-100">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Comments:</strong></h5>
+                            <textarea id="comments" class="form-control" placeholder="Tell us anything specific about this order. Entering the names of the speakers and the names mentioned in the audio will increase the transcription accuracy." rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for=""><strong>File Duration:</strong></label>
+                        <span class="input form-control form-control-lg" id="fileduration">00:00:00</span>
+                        <span class="input form-control form-control-lg" id="filedurationinminutes"></span>
+                        <span class="input form-control form-control-lg" id="uniquefilename"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for=""><strong>Order Value: (Min $5)</strong></label>
+                        <span class="form-control form-control-lg" id="ordertotal">$ 0</span>
+                    </div>
+                </div>
+                <div class="container mt-4 text-center">
+                    <button id="placeorder" disabled="disabled" onclick="this.blur();" type="submit" class="btn btn-primary">Place order</button>
+                </div>
+            </div>
+        </div>
+        <div class="shadow container p-3 mb-5 bg-white rounded">
+            <h5>Accepted formats :</h5>
+            <p id="formats"> 8svx, mp3, aac, ac3, aiff, amb, amr, au, avchd , avi, avr, caf, cdda, cvs, cvsd, cvu, dss, dts, dvms, fap, flac, flv, fssd, gsm, gsrt, hcom, htk, ima, ircam, m4a, m4p, m4r, m4v, maud, mkv, mov, mp2, mp4, mpe, mpeg, mpg, mpv, nist, oga, ogg, opus, paf, prc, pvf, ra, sd2, sln, smp, snd, sndr, sndt, sou, sph, spx, tta, txw, vms, voc, vox,w64, wav, webm, wma, wmv, wv, wve </p>
+            <p><strong>Note:</strong> Your uploaded files will be deleted automatically after 7 days, but the transcripts will be available to download at anytime.</p>
+        </div>
+    </div>
+</div>
+<script>
+// Get a reference to the progress bar, wrapper & status label
+var progress = document.getElementById("progress");
+var progress_wrapper = document.getElementById("progress_wrapper");
+var progress_status = document.getElementById("progress_status");
+
+// Get a reference to the 3 buttons
+var upload_btn = document.getElementById("upload_btn");
+var loading_btn = document.getElementById("loading_btn");
+var cancel_btn = document.getElementById("cancel_btn");
+
+// Get a reference to the alert wrapper
+var alert_wrapper = document.getElementById("alert_wrapper");
+
+// Get a reference to the file input element & input label 
+var input = document.getElementById("file_input");
+var file_input_label = document.getElementById("file_input_label");
+
+// Function to show alerts
+function show_alert(message, alert) {
+
+    alert_wrapper.innerHTML = `
+    <div id="alert" class="alert alert-${alert} alert-dismissible fade show" role="alert">
+      <span>${message}</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  `
+
+}
+
+// updating the duration of the file
+var fileduration = document.getElementById("fileduration");
+var filedurationinminutes = document.getElementById("filedurationinminutes");
+var filenameunique = document.getElementById("uniquefilename");
+
+
+function updateduration(totalduration) {
+    window.formatted_duration = new Date(totalduration * 1000).toISOString().substr(11, 8);
+    fileduration.textContent = formatted_duration
+    filedurationinminutes.textContent = totalduration
+}
+
+function updateuniquefilename(uniquefilenames) {
+    window.uniquefilenames = uniquefilenames.replace(' uploaded successfully', '')
+    filenameunique.textContent = uniquefilenames
+}
+
+
+function enableplaceorder() {
+    $('#placeorder').removeAttr('disabled');
+}
+
+// Function to upload file
+function upload(url) {
+    // Reject if the file input is empty & throw alert
+    if (!input.value) {
+        show_alert("No file selected", "warning")
+        return;
+    }
+    // Create a new FormData instance
+    var data = new FormData();
+    // Create a XMLHTTPRequest instance
+    var request = new XMLHttpRequest();
+    // Set the response type
+    request.responseType = "json";
+    // Clear any existing alerts
+    alert_wrapper.innerHTML = "";
+    // Disable the input during upload
+    input.disabled = true;
+    // Hide the upload button
+    upload_btn.classList.add("d-none");
+    // Show the loading button
+    loading_btn.classList.remove("d-none");
+    // Show the cancel button
+    cancel_btn.classList.remove("d-none");
+    // Show the progress bar
+    progress_wrapper.classList.remove("d-none");
+    // Get a reference to the file
+    var file = input.files[0];
+    // Get a reference to the filename
+    var filename = file.name;
+    // Get a reference to the filesize & set a cookie
+    var filesize = file.size;
+    document.cookie = `filesize=${filesize}`;
+
+    // Append the file to the FormData instance
+    data.append("file", file);
+
+    // request progress handler
+    request.upload.addEventListener("progress", function(e) {
+        // Get the loaded amount and total filesize (bytes)
+        var loaded = e.loaded;
+        var total = e.total
+        // Calculate percent uploaded
+        var percent_complete = (loaded / total) * 100;
+        // Update the progress text and progress bar
+        progress.setAttribute("style", `width: ${Math.floor(percent_complete)}%`);
+        progress_status.innerText = `${Math.floor(percent_complete)}% uploading, please wait...`;
+    })
+
+    // request load handler (transfer complete)
+    request.addEventListener("load", function(e) {
+        if (request.status == 200) {
+            show_alert(`${request.response.message}`, "success");
+            window.totalduration = request.response.totalduration
+            window.uniquefilename = request.response.message
+            updateduration(totalduration)
+            updateuniquefilename(uniquefilename)
+            // ordervalue()
+            enableplaceorder()
+
+            // You need to recieve the total duration here along with the unique name of the file and enable place order button
+        } else {
+            show_alert(`Error uploading file. The filename either does not have an extension or is not in the required format. Please upload the file with a supported format mentioned below. If your file format is valid and you are not able to upload your file, please use the chat feature at the bottom of your screen`, "danger");
+        }
+        reset();
+    });
+
+    var ordertotal = document.getElementById("ordertotal");
+
+    // function ordervalue() { 
+    //     cost = (totalduration / 60) * transcriptiontype
+    //     cost = Math.round(cost * 100) / 100
+    //     ordertotal.textContent = '$ ' + cost
+    // }
+
+    // request error handler
+    request.addEventListener("error", function(e) {
+        reset();
+        show_alert(`Error uploading file`, "warning");
+    });
+
+    // request abort handler
+    request.addEventListener("abort", function(e) {
+        reset();
+        show_alert(`Upload cancelled`, "primary");
+    });
+
+    // Open and send the request
+    request.open("post", url);
+    request.send(data);
+    cancel_btn.addEventListener("click", function() {
+        request.abort();
+    })
+}
+
+// Function to update the input placeholder
+function input_filename() {
+    file_input_label.innerText = input.files[0].name;
+}
+
+// Function to reset the page
+function reset() {
+    // Clear the input
+    input.value = null;
+    // Hide the cancel button
+    cancel_btn.classList.add("d-none");
+    // Reset the input element
+    input.disabled = false;
+    // Show the upload button
+    upload_btn.classList.remove("d-none");
+    // Hide the loading button
+    loading_btn.classList.add("d-none");
+    // Hide the progress bar
+    progress_wrapper.classList.add("d-none");
+    // Reset the progress bar state
+    progress.setAttribute("style", `width: 0%`);
+    // Reset the input placeholder
+    file_input_label.innerText = "Select file";
+}
+
+function calculations() {
+    $(window).load(function() {
+        window.transcriptiontype = 0.8;
+        window.turnaroundtime = 0;
+        window.subtitles = 0;
+        window.foreignsubtitles = 0;
+        window.humangeneratedlanguage = 'en-US';
+        window.automatedlanguage = 'en-US';
+        window.foreignlanguage = 'en-US';
+        window.noofspeakers = 2;
+        window.comments = '';
+        window.minutes = 0;
+        window.totalduration = 0;
+        window.uniquefilenames = '';
+        window.cost = 0;
+        window.verbatimtype = 0;
+        window.formatted_duration = 0;
+
+        document.getElementById('automatedturnaroundtime').style.display = 'none';
+        document.getElementById('automatedlanguage').style.display = 'none';
+        document.getElementById('foreignlanguage').style.display = 'none';
+        document.getElementById('foreignsubtitles').style.display = 'none';
+        document.getElementById('filedurationinminutes').style.display = 'none';
+        document.getElementById('uniquefilename').style.display = 'none';
+
+        $('input[name=transcriptiontype]').on('change', function(evt) {
+            window.transcriptiontype = parseFloat($(this).val(), 10);
+            changetat();
+            calcTotals();
+        });
+
+        $('input[name=turnaroundtime]').on('change', function(evt) {
+            window.turnaroundtime = parseFloat($(this).val(), 10);
+            calcTotals()
+        });
+
+        $('input[name=subtitles]').on('change', function(evt) {
+            window.subtitles = parseFloat($(this).val(), 10);
+            foreigncondition();
+            calcTotals()
+        });
+
+        $('input[name=foreignsubtitles]').on('change', function(evt) {
+            window.foreignsubtitles = parseFloat($(this).val(), 10);
+            foreigncondition();
+            calcTotals()
+        });
+
+        $('input[name=verbatimtype]').on('change', function(evt) {
+            window.verbatimtype = parseFloat($(this).val(), 10);
+            foreigncondition();
+            calcTotals()
+        });
+
+        $("#noofspeakers").on('input', function() {
+            window.noofspeakers = $("#noofspeakers").val();
+        });
+
+        $("#humangeneratedlanguage").on('input', function() {
+            window.humangeneratedlanguage = $("#humangeneratedlanguagevalue").val();
+        });
+
+        $("#automatedlanguage").on('input', function() {
+            window.automatedlanguage = $("#automatedlanguagevalue").val();
+        });
+
+        $("#foreignlanguage").on('input', function() {
+            window.foreignlanguage = $("#foreignlanguagevalue").val();
+        });
+
+        $("#comments").on('input', function() {
+            window.comments = $("#comments").val();
+        });
+
+        setInterval(function() {
+            minutes = $("#filedurationinminutes").text();
+            calcTotals()
+        }, 700);
+
+        function changetat() {
+            if (transcriptiontype == 0.8) {
+                document.getElementById('humangeneratedturnaround').style.display = 'block';
+                document.getElementById('automatedturnaroundtime').style.display = 'none';
+                document.getElementById('verbatimtype').style.display = 'block';
+                document.getElementById('automatedlanguage').style.display = 'none';
+                document.getElementById('humangeneratedlanguage').style.display = 'block';
+                document.getElementById('numberofspeakers').style.display = 'block';
+                document.getElementById('commentsornotes').style.display = 'block';
+                document.getElementById('foreignsubtitles').style.display = 'none';
+                document.getElementById('foreignlanguage').style.display = 'none';
+            } else if (transcriptiontype == 0.1) {
+                document.getElementById('humangeneratedturnaround').style.display = 'none';
+                document.getElementById('automatedturnaroundtime').style.display = 'block';
+                document.getElementById('verbatimtype').style.display = 'none';
+                document.getElementById('automatedlanguage').style.display = 'block';
+                document.getElementById('humangeneratedlanguage').style.display = 'none';
+                document.getElementById('numberofspeakers').style.display = 'none';
+                document.getElementById('commentsornotes').style.display = 'none';
+                return;
+            }
+        }
+
+        function foreigncondition() {
+            if (transcriptiontype == 0.1 && subtitles == 1) {
+                document.getElementById('foreignsubtitles').style.display = 'block';
+                document.getElementById('foreignlanguage').style.display = 'block';
+            } else {
+                document.getElementById('foreignsubtitles').style.display = 'none';
+                document.getElementById('foreignlanguage').style.display = 'none';
+            }
+        }
+
+
+        function calcTotals() {
+
+            if (transcriptiontype == 0.8) {
+                cost = ((minutes / 60) * transcriptiontype) + ((minutes / 60) * turnaroundtime)
+                window.cost = Math.round(cost * 100) / 100
+                if (cost<5){
+                    cost = 5
+                }
+                ordertotal.textContent = '$ ' + cost
+            } else if (transcriptiontype == 0.1) {
+                cost = ((minutes / 60) * transcriptiontype)
+                window.cost = Math.round(cost * 100) / 100
+                if (cost<1){
+                    cost = 1
+                }
+                ordertotal.textContent = '$ ' + cost
+            }
+
+            parsedictlets = {
+                'transcriptiontype': transcriptiontype,
+                'turnaroundtime': turnaroundtime,
+                'verbatimtype': verbatimtype,
+                'subtitles': subtitles,
+                'foreignsubtitles': foreignsubtitles,
+                'humangeneratedlanguage': humangeneratedlanguage,
+                'automatedlanguage': automatedlanguage,
+                'foreignlanguage': foreignlanguage,
+                'noofspeakers': noofspeakers,
+                'comments': comments,
+                'filedurationinminutes': formatted_duration,
+                'filename': uniquefilenames,
+                'ordervalue': cost
+            };
+        }
+
+
+        placingordernow = '<svg xmlns="http://www.w3.org/2000/svg" class="waveheight" viewBox="0 0 76 26"><g id="audio-wave" data-name="audio-wave"><rect id="wave-5" class="wave" x="32" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4" class="wave" x="24" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3" class="wave" x="16" width="4" height="26" rx="2" ry="2" /><rect id="wave-2" class="wave" x="8" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1" class="wave" y="9" width="4" height="8" rx="2" ry="2" /><rect id="wave-5-2" data-name="wave-4" class="wave" x="72" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4-2" data-name="wave-5" class="wave" x="64" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3-2" data-name="wave-3" class="wave" x="56" width="4" height="26" rx="2" ry="2" /><rect id="wave-2-2" data-name="wave-2" class="wave" x="48" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1-2" data-name="wave-1" class="wave" x="40" y="9" width="4" height="8" rx="2" ry="2" /></g></svg>'
+
+        var placeorder = document.getElementById('placeorder');
+        $(function() {
+            $("#placeorder").on('click', function(e) {
+                placeorder.innerHTML = placingordernow
+                if (cost < {{ user.credits }}) {
+                    // console.log('Success')
+                    window.location.replace("/users/orderplaced/");
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        // async: false,
+                        // headers: { "cache-control": "no-cache" },
+                        url: '/users/orderplaced/',
+                        data: JSON.stringify(parsedictlets),
+                        dataType: 'json'
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        // async: false,
+                        // headers: { "cache-control": "no-cache" },
+                        url: '/users/submitorderforprocessing/',
+                        data: JSON.stringify(parsedictlets),
+                        dataType: 'json'
+                    }).done(function(respo) {
+                        window.location.replace("/users/payments/yyy"+respo['ordervalue']+'rty/'+respo['uniqueid']+"/");
+                    });
+
+                }
+            });
+        });
+
+
+    });
+}
+calculations()
+</script>
+{% endblock content %}

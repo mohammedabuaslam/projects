@@ -1,0 +1,109 @@
+{% extends "main/base.html" %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Sign Up</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact">
+    <div class="container">
+        <br class="d-none d-sm-block"><br class="d-none d-sm-block">
+        <h2 class="text-center d-none d-sm-block"><u>Register</u></h2><br class="d-none d-sm-block"><br class="d-none d-sm-block">
+        <div class="row">
+            <div class="col-lg-3" data-aos="fade-right"></div>
+            <div class="col-lg-6 mt-lg-0 shadow p-3 mb-5 bg-white rounded" data-aos="fade-left">
+                <form action="{% url 'register' %}" method="post" onsubmit="ShowLoading()">
+                    <div class="container text-center">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% csrf_token %}
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">{{form.username.label_tag}}*</small>
+                                <input id="username" type="username" for='{{ form.username}}' name="username" class="form-control" required placeholder='Name'>
+                                {% for error in form.username.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">Email *</small>
+                                <input id="email" type="email" for='{{ form.email}}' name="email" class="form-control" required placeholder='@company.com'>
+                                {% for error in form.email.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">{{form.password1.label_tag}}*</small>
+                                <input id="password1" type="password" for='{{ form.password1}}' name="password1" required class="form-control">
+                                {% for error in form.password1.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">Confirm Password*</small>
+                                <input id="password2" type="password" for='{{ form.password2}}' name="password2" required class="form-control">
+                                {% for error in form.password2.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">Phone*</small>
+                                <input id="phone" type="text" for='{{ form.phone}}' name="phone" class="form-control" required placeholder="+1 813-721-7155">
+                                {% for error in form.password1.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <small class="font-weight-bold">Country*</small>
+                                <input id="country" type="text" for='{{ form.country}}' name="country" class="form-control" required placeholder="USA">
+                                {% for error in form.password1.errors %}
+                                <small class="text-danger">{{error}}</small>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center"><button id="subm" onclick="this.blur();" class="btn btn-primary" type="submit">Sign Up</button></div>
+                </form>
+                <div class="text-center mt-3 mb-3">
+                    <form action="/accounts/google/login/" method="post">
+                        {% csrf_token %}
+                        <button class="border border-primary btn" role="button">
+                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                            Sign-Up with Google
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3" data-aos="fade-right"></div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+    </div>
+</section>
+<script type="text/javascript">
+placingordernow = '<svg xmlns="http://www.w3.org/2000/svg" class="waveheight" viewBox="0 0 76 26"><g id="audio-wave" data-name="audio-wave"><rect id="wave-5" class="wave" x="32" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4" class="wave" x="24" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3" class="wave" x="16" width="4" height="26" rx="2" ry="2" /><rect id="wave-2" class="wave" x="8" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1" class="wave" y="9" width="4" height="8" rx="2" ry="2" /><rect id="wave-5-2" data-name="wave-4" class="wave" x="72" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4-2" data-name="wave-5" class="wave" x="64" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3-2" data-name="wave-3" class="wave" x="56" width="4" height="26" rx="2" ry="2" /><rect id="wave-2-2" data-name="wave-2" class="wave" x="48" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1-2" data-name="wave-1" class="wave" x="40" y="9" width="4" height="8" rx="2" ry="2" /></g></svg>'
+
+var mybutton = document.getElementById("subm");
+
+function ShowLoading() {
+    mybutton.innerHTML = placingordernow
+}
+</script>
+{% endblock content %}

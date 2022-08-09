@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Payment Processing &nbsp;</li>
+                (Available Credits: $ {{ user.credits }})
+            </ol>
+        </div>
+    </div>
+</section>
+<div class=" container mt-5">
+    <div class="section-title">
+        <h2>Processing Payment</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <h5 class="card-title">Dear user, your payment is being processed. Please check your dashboard page to check your available credits.</h5>
+                <p>If your money was debited and you are not able to see your credits in your dashboard, please contact us and one of our executives will assist you immediately</p>
+                <div class="text-center">
+                    <a href="{% url 'dashboard' %}" class="btn btn-success">Dashboard</a>
+                    <a href="{% url 'contact-us' %}" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock content %}

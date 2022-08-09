@@ -1,0 +1,134 @@
+{% extends "main/base.html" %}
+{% block head %}
+<meta name="title" content="Automated Transcription Software - Video | Subtitles | Captions">
+<meta name="og:title" content="Automated Transcription Software - Video | Subtitles | Captions">
+<meta name="og:description" content="LetsTranscript automated transcription software converts the audio/video to text, subtitles & captions in minutes at only 10¢/min.">
+<meta name="description" content="LetsTranscript automated transcription software converts the audio/video to text, subtitles & captions in minutes at only 10¢/min.">
+<meta name="keywords" content="automated transcription service,upload,audio,video files, free of charge, marketing, media,research,education,justice,healthcare,thematic analysis,Speech Analytics, transcripts, automation, transcription projects,legal transcription, call transcription, interview transcription. Journalism & Media,Video Production,Podcast,Market Research,Academic Transcription,Call Transcription,Interview Transcription">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+{% endblock head %}
+{% block content %}
+<section id="hero" class="d-flex align-items-center">
+    <div class="container-fluid" data-aos="fade-up">
+        <div class="row text-center justify-content-center">
+            <h1 class="text-dark">Automated Transcription Services</h1>
+            <h2 class="text-dark uyshjgdiku">Save time. Save money. Do more.</h2>
+            <h2 class="text-dark uyshjgdiku">Order Online (10¢ per audio minute)</h2>
+            <div><a href="{% url 'upload' %}" class="btn-get-started scrollto">Upload Files</a></div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <p class="uyshjgdiku">
+                Trying to look for an internet service that can convert audio files to text? Transcribing your recorded files has significant value in the twenty-first century. A Recording + Internet connection, is everything you need. <br><br>
+                LetsTranscript automated speech-to-text conversion software is the most affordable and time-efficient method of obtaining a transcription, but it is not the most precise. And, of course, you'll have to manually insert the majority of punctuation marks. <br><br>
+                The Human Transcription service offered by LetsTranscript is the most accurate method of converting voice to text online. You will receive a completed work within the chosen Turnaround-time from our team of highly experienced professional transcriptionists, with 99% precision assured. <br><br>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img class="gifimage" src="{{MEDIA_URL}}/media/static/assets/img/gifs/ai.gif">
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="container text-center"><br>
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-3 " data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-box iconbox-blue">
+                        <div class="text-center shadow p-3 mb-4 bg-white rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 172 172" style=" fill:#000000;">
+                                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                                    <g fill="#2ecc71">
+                                        <path d="M101.55111,11.56185c-2.74035,0.01254 -5.48351,1.07075 -7.57259,3.16341l-39.62663,39.71061c-2.68033,2.6875 -4.18522,6.32178 -4.18522,10.12012v71.61068c0,7.91917 6.41417,14.33333 14.33333,14.33333h64.44401c5.72617,0 10.90688,-3.41089 13.17155,-8.67839l21.55599,-50.18066c0.76683,-1.7845 1.16178,-3.71278 1.16178,-5.65494v-14.31934c0,-7.91917 -6.41417,-14.33333 -14.33333,-14.33333h-45.51953l7.12467,-32.71191c0.78833,-3.612 -0.33728,-7.37898 -2.96744,-9.96615c-2.107,-2.07117 -4.84624,-3.10597 -7.58659,-3.09343zM14.33333,64.5c-3.956,0 -7.16667,3.21067 -7.16667,7.16667v71.66667c0,3.956 3.21067,7.16667 7.16667,7.16667h14.33333c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-71.66667c0,-3.956 -3.21067,-7.16667 -7.16667,-7.16667z"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <h4 class="fw-bold mt-3">Good Audio</h4>
+                            <p>Little background noise <br> Clear voices <br> Minimal accents</p>
+                            <h6 class="fw-bold mt-2">Result: 85%+ Accuracy</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-3 text-center  mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-center shadow p-3 mb-4 bg-white rounded">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABmJLR0QA/wD/AP+gvaeTAAADoUlEQVRoge2ZX2gcVRSHvzM7ad3EUBFLdjeJGh8bqyBSkE1hKwVNjdaXKKJQfBBbfPBFwb71QagtgopSgggqCKEEtDS7KhEhmt2IVFAfQqmKfaj9s4qxGsFkd+ceH7QQS+7M7M6MdGA/2Jc5vznn/Gbu7Nx7B7p06dKlS5cuXWxInMm0VHLP9zZud8W5S4WbgWFg8N9fL+AC/QgOyhbAAL8DTeA3hXMOnDUipwWvmlvZ9LXMz7f+V0M/jZeGHNebFNW9wN1AX9Sc61gGpo2jrw+erJ0Jc0JHhpYmRzfduHrDw6rylMC9gNNJntAITYwezlVqhwTUXxqC78fHN1+XuXxThswOoCTwGLA1jl7bQYSDudnqS34aNyjJxYmxP2GlDzLxddYhquwBfA2FGSpxPhPRUP0kSJLs2I+XtVaveTlIlCZDm3tWM89qqeT7mKTJEKocvtTfmlvevXuLTZMqQwAou9ayqwdt4fQZAjCM2EKpNKTIrC2WPkPCkUJl4T1bOPDFei0hSi1Xrr7gp0nVHVKheOmBsSk9ZO87VYYAVHi6fmrnM7Z46gwBqKP32WKpNASs2QJpNNQQlWO2YKAhR52iogeAUCvGZJE3HM9sy5UXPrUqwqb65aFiv+fJRyoU42mufVSdbYXK56f9NKGH3NaTtZWmeI8CK5E76xAH83iwpg2Gy1+cB3mx85aiocIdQZq2/xSWs8uvAr63PTGEZpCkbUOjM0sNxOwDVjtoyQM+Q3gf4Uug3sa5LdC3gkQd78tdfLD4CCrThL8oqmLuL8wuzq0/eG7ynqzbcEcw5hYxkld0EJEBVR1CpE+ElirfGWPeHvpw8ZugIpE2Gi9MFPcLcixcHjmVLy/siFIvDJFerIVybQrFunr8D6K/RqkVlsgzhXylekRUXwnSibJdY95L34hYpj4DvYXnET720ygM1veMXdtD7goyM+N5buMJ4KyfTjPsi6Oeby9xJqtPjN1pYJF/Pp1sxF/SY27NfbD4c5x11xPrbHugXP0Wled8JFltiHVxFgexLx9ylYUpQeasApEn/ZbQUYk9sYCK6gHsM4nh+lc7d8Vd9wqJXKmBSvVHRax/5SpmbxJ1IcEV65qbOQr8sWFQZXtSdRMzNHJi/jIqb24YVK5Pqm6yewqOecdS1fd9FalkUokB8rO1JZAfrj6uynRSNRPf9RHV41cdOZ4vV08kVS/xve0e0zzazPSMKtym8G4+m3st6NN8FP4GkZYNUdJp+IEAAAAASUVORK5CYII=">
+                        <h4 class="fw-bold mt-2">Difficult Audio</h4>
+                        <p>Heavy background noise <br> Overtalk <br> Accented dialogue</p>
+                        <h6 class="fw-bold">Use Human Transcription instead</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <h3 class="fw-bold">Follow these steps to complete your audio to text conversion:</h3> <br>
+            <ol class="uyshjgdiku">
+                <li><strong>Decide your options:&nbsp;</strong>At this point, you may either login into your existing LetsTranscript account or create a new one. When you've decided on your choices, Upload.</li>
+                <li><strong>Send your file to us:&nbsp;</strong>Obtaining a transcript is as simple as going to the LetsTranscript upload page and dragging your recording from your computer or clicking UPLOAD.</li>
+                <li><strong>Make payment:&nbsp;</strong>Sit Back and Relax. Your file will be delivered within the chosen Turnaround-time.</li>
+            </ol><br>
+            <p class="h3 fw-bold mb-4 text-center">
+                Transcribed | Delivered &lt; than 2 Hours
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img class="gifimage" src="{{MEDIA_URL}}/media/static/assets/img/gifs/dgedfmujgg.gif">
+        </div>
+    </div>
+</div>
+<div class="ebedf4"><br><br><br>
+    <div class="container">
+        <h3 class="text-center mb-5 fw-bold">COMPLIANCE & SECURITY</h3>
+        <div class="card-deck">
+            <div class="card">
+                <div class="text-center">
+                    <img class="gifimage2 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/univ/shield.png" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">HIPAA COMPLIANCE</h5>
+                    <p class="card-text uyshjgdiku mt-3 text-center">
+                        In the transcription industry, we recognize the need of maintaining HIPAA compliance. At LetsTranscript, we understand the need of protected health information (PHI) very strictly.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="text-center">
+                    <img class="gifimage2 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/univ/target.png" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">SECURITY ASSURED</h5>
+                    <p class="card-text uyshjgdiku mt-3 text-center">
+                        One of our primary objectives is to maintain the maximum security. By working with us, clients can be certain that the information included in your files are secure and protected.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br>
+</div>
+<div class="yrnirhjeh">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Get Started</h2>
+                <a href="{% url 'upload' %}" class="btn bg-white mt-3 mb-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Order Now</a>
+                <h3 class="text-white h5">★★★★★ 4.9/5 &nbsp; | &nbsp;<a href="#" class="text-white h5"><u>1846 customer reviews</u></a></h3>
+            </div>
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Have a large project?</h2>
+                <a href="{% url 'contact-us' %}" class="btn bg-white mt-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,137 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Dashboard</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="spacing"></div>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message|title }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-8">
+            <div class="shadow-lg p-3 mb-5 rounded bg-white">
+                <div class="row mb-3">
+                    <div class="section-title mt-2">
+                        <h2 class="text-center">Upload Files</h2>
+                    </div>
+                    <div id="stybutton3" class="row text-center justify-content-center">
+                        <div><a href="{% url 'upload' %}" class="btn-get-started3 scrollto">Upload</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-8">
+            <div class="shadow-lg p-3 mb-5 rounded bg-white">
+                <div class="row mb-3">
+                    <div class="section-title mt-2">
+                        <h2 class="text-center">Credits: {{user.credits}}</h2>
+                    </div>
+                    <div id="stybutton3" class="row text-center justify-content-center">
+                        <div><a href="{% url 'addcreditstowallet' %}" class="btn-get-started3 scrollto">Add Credits</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container justify-content-center mt-3">
+            <div class="row">
+                <div class="col-lg-12 shadow-lg p-3 mb-5 bg-white rounded">
+                    <div class="">
+                        <div class="card-body">
+                            <div class="table-responsive project-list">
+                                <table class="table project-table table-centered table-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">FileName</th>
+                                            <th scope="col">Transcription Type</th>
+                                            <th scope="col">OrderValue</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for order in posts %}
+                                        <tr>
+                                            <td>{{ order.date_posted|date:"F d, Y" }}</td>
+                                            <td>{{ order.ordername}}</td>
+                                            <td>{{ order.transcriptiontype}}</td>
+                                            <td>$ {{ order.ordervalue}}</td>
+                                            <td>
+                                                <span class="text-success font-12"><i class="mdi mdi-checkbox-blank-circle mr-1"></i> {{order.orderstatus|capfirst}}</span>
+                                            </td>
+                                            <td>
+                                                <div class="action" style="display: inline-block;">
+                                                    {% if order.transcriptiontype == 'Human-Generated' %}
+                                                    <form action="{% url 'download_order' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        {% if order.orderstatus == 'processing' %}
+                                                        <button class="btn btn-sm btn-outline-primary" type="submit" name="download" onclick="this.blur();" disabled value="{{order.ordername}}">Download</button>
+                                                        {% else %}
+                                                        <button class="btn btn-sm btn-outline-primary" type="submit" name="download" onclick="this.blur();" value="{{order.ordername}}">Download</button>
+                                                        {% endif %}
+                                                    </form>
+                                                    {% endif %}
+                                                    {% if order.transcriptiontype == 'Automated' %}
+                                                    <form action="{% url 'downloadautomatedorder' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        {% if order.orderstatus == 'processing' %}
+                                                        <button class="btn btn-sm btn-outline-primary" type="submit" name="download" onclick="this.blur();" disabled value="{{order.ordername}}">Download</button>
+                                                        {% else %}
+                                                        <button class="btn btn-sm btn-outline-primary" type="submit" name="download" onclick="this.blur();" value="{{order.ordername}}">Download</button>
+                                                        {% endif %}
+                                                    </form>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 pt-3">
+                                <ul class="pagination justify-content-center mb-0">
+                                    {% if is_paginated %}
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item active"><a class="btn btn-outline-primary" href="?page=1">First &nbsp;</a></li>&nbsp;
+                                    {% endif %}
+                                    {% for num in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == num %}
+                                    <li class="page-item active"><a class="btn btn-info" href="?page={{ num }}">&nbsp; {{ num }} &nbsp;</a></li>&nbsp;
+                                    {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %} <li class="page-item active"><a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a></li>&nbsp;
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                        <li class="page-item active"><a class="btn btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">&nbsp; Last &nbsp;</a></li>
+                                        {% endif %}
+                                        {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

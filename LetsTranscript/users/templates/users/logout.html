@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Logout</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact mt-5 mb-5">
+    <h1 class="text-center"><u>You have been Logged Out!</u></h1>
+    <div class="container text-center mt-5">
+        <p><a type="button" class="btn btn-primary" href="{% url 'login' %}">Sign In</a></p>
+    </div>
+</section>
+{% endblock content %}

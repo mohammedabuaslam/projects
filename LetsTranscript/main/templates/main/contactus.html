@@ -1,0 +1,93 @@
+{% extends "main/base.html" %}
+{% block head %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Contact Us</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact section-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Contact</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <form action="" method="post" role="form" class="php-email-form">
+                    <div class="container text-center">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input required type="text" name="name" class="form-control" id="name" placeholder="Name" data-rule="minlen:2" data-msg="Please enter at least 2 chars" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input required type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validate"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input required type="text" name="phone" class="form-control" id="phone" placeholder="Phone" />
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input required type="text" class="form-control" name="country" id="country" placeholder="Country" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" class="form-control" name="companyname" id="companyname" placeholder="Company" />
+                    </div>
+                    <div class="form-group">
+                        <input required type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="mt-4 row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="g-recaptcha" data-sitekey="6LeQRZUdAAAAABVkblnamhLuCy6c_SVxxnwjwUK-" data-callback="enableBtn"></div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                    </div>
+                    <div class="text-center"><button disabled onclick="this.blur();" id="submitbutton" type="submit">Send Message</button></div>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+function enableBtn() {
+    document.getElementById("submitbutton").disabled = false;
+}
+var sendmessage = document.getElementById('submitbutton');
+placingordernow = '<svg xmlns="http://www.w3.org/2000/svg" class="waveheight" viewBox="0 0 76 26"><g id="audio-wave" data-name="audio-wave"><rect id="wave-5" class="wave" x="32" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4" class="wave" x="24" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3" class="wave" x="16" width="4" height="26" rx="2" ry="2" /><rect id="wave-2" class="wave" x="8" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1" class="wave" y="9" width="4" height="8" rx="2" ry="2" /><rect id="wave-5-2" data-name="wave-4" class="wave" x="72" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4-2" data-name="wave-5" class="wave" x="64" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3-2" data-name="wave-3" class="wave" x="56" width="4" height="26" rx="2" ry="2" /><rect id="wave-2-2" data-name="wave-2" class="wave" x="48" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1-2" data-name="wave-1" class="wave" x="40" y="9" width="4" height="8" rx="2" ry="2" /></g></svg>'
+$("#submitbutton").on('click', function(e) {
+    sendmessage.innerHTML = placingordernow
+});
+</script>
+{% endblock content %}

@@ -1,0 +1,252 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block head %}
+<meta name="title" content="Transcription Services Cost - Price | Rates ($0.80/ Minute)">
+<meta name="og:title" content="Transcription Services Cost - Price | Rates ($0.80/ Minute)">
+<meta name="og:description" content="LetsTranscript offers the lowest and best transcription rates starting at automated (10¢ per minute), and human (80¢ per minute).">
+<meta name="description" content="LetsTranscript offers the lowest and best transcription rates starting at automated (10¢ per minute), and human (80¢ per minute).">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Cost-Estimator</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="section-title mt-5">
+    <h2>Cost-Estimator</h2>
+</div>
+<section style="padding: 0px;" id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+        	<div class="col-lg-2 col-md-2"></div>
+            <div id="transcription" class="col-lg-8 col-md-8 portfolio-item filter-human">
+                <div class="portfolio-human">
+                    <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="row">
+                            <div class="form-group col-md-4 col-xs-12">
+                                <input class="form-control" id="Hour" type="text" placeholder="Hours">
+                            </div>
+                            <div class="form-group col-md-4 col-xs-12 mt-3 mt-md-0">
+                                <input class="form-control" id="Minute" type="text" placeholder="Minutes">
+                            </div>
+                            <div class="form-group col-md-4 col-xs-12 mt-3 mt-md-0">
+                                <span class="form-control" id="total1"><strong>Order Value:</strong> $0.00</span>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-6 py-2">
+                                <div class="card card-body h-100">
+                                    <h5 class="card-title"><strong>Transcription Type:</strong></h5>
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="human-generated"><input checked type="radio" class="form-check-input" value="0.8" id="human-generated" required="required" name="transcriptiontype">Human Transcription </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="automated"><input type="radio" class="form-check-input" value="0.1" name="transcriptiontype">Automated Transcription </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 py-2" id="humantat">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Turnaround Time:</strong></h5>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="3days"><input type="radio" class="form-check-input" value="0" id="3days" name="turnaroundtime" checked>3 Days</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="1day"><input type="radio" class="form-check-input" value="0.2" id="1day" name="turnaroundtime">1 Day</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 py-2" id="autotat">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Turnaround Time:</strong></h5>
+                                        <p class="card-text">Turnaround time for automated transcription is less than 2 hours.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 py-2">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Subtitles:</strong></h5>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="captionsyes"><input type="radio" class="form-check-input" value="0" id="captionsno" name="captions" checked>No</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="captionsyes"><input type="radio" class="form-check-input" value="0" id="captionsyes" required="required" name="captions">Yes</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 py-2" id="verbatimtype23">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>Verbatim Type:</strong></h5>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="cleanverbatim"><input type="radio" class="form-check-input" value="0" id="cleanverbatim" name="verbatimtype" checked><strong>Clean Verbatim</strong> (remove all stutters)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="fullverbatim"><input type="radio" class="form-check-input" value="0" id="fullverbatim" name="verbatimtype"><strong>Full Verbatim</strong> (keep all stutters)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2"></div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+function showtranscription() {
+    transcription = document.getElementById('transcription');
+    translation = document.getElementById('translation');
+    translation.classList.add("d-none");
+    transcription.classList.remove("d-none");
+}
+
+function showtranslation() {
+    transcription = document.getElementById('transcription');
+    translation = document.getElementById('translation');
+    translation.classList.remove("d-none");
+    transcription.classList.add("d-none");
+}
+$(window).load(function() {
+    document.getElementById('autotat').style.display = 'none';
+    var transcriptiontype = 0.8;
+    var translationtype = 5;
+    var category = 0;
+    var difficultaudio = 0;
+    var verbatimtype = 0;
+    var turnaroundtime = 0;
+    var foreignsubtitleslanguage = 'None'
+    var captions1 = 0;
+    var captions1T = 0;
+    var nhr = 0;
+    var nhrT = 0;
+    var nmin = 0;
+    var nminT = 0;
+    var foreignsubrate = 5;
+    $("#Hour").on('input', function() {
+        nhr = parseInt($(this).val(), 10);
+        if (Number.isNaN(nhr))
+            nhr = 0;
+        calcTotals();
+    });
+    $("#Minute").on('input', function() {
+        nmin = parseInt($(this).val(), 10);
+        if (Number.isNaN(nmin))
+            nmin = 0;
+        calcTotals();
+    });
+    $("#HourT").on('input', function() {
+        nhrT = parseInt($(this).val(), 10);
+        if (Number.isNaN(nhrT))
+            nhrT = 0;
+        calcTotals();
+    });
+    $("#MinuteT").on('input', function() {
+        nminT = parseInt($(this).val(), 10);
+        if (Number.isNaN(nminT))
+            nminT = 0;
+        calcTotals();
+    });
+    $("#foreignsubtitleslanguage").on('input', function() {
+        foreignsubtitleslanguage = $("#foreignsubtitleslanguage").val();
+        foreignsubrate = foreignsubtitleslanguage[3]
+        calcTotals();
+    });
+    $('input[name=transcriptiontype]').on('change', function(evt) {
+        transcriptiontype = parseFloat($(this).val(), 10);
+        changetat();
+        calcTotals();
+    });
+    $('input[name=translationtype]').on('change', function(evt) {
+        translationtype = parseFloat($(this).val(), 10);
+        calcTotals();
+    });
+    $('input[name=category]').on('change', function(evt) {
+        category = parseFloat($(this).val(), 10);
+        changetat();
+        calcTotals();
+    });
+    $('input[name=turnaroundtime]').on('change', function(evt) {
+        turnaroundtime = parseFloat($(this).val(), 10);
+        calcTotals();
+    });
+    $('input[name=captions]').on('change', function(evt) {
+        captions1 = parseFloat($(this).val(), 10);
+        calcTotals();
+    });
+    $('input[name=captions-translation]').on('change', function(evt) {
+        captions1T = parseFloat($(this).val(), 10);
+        calcTotals();
+    });
+    $('input[name=difficultaudio]').on('change', function(evt) {
+        difficultaudio = parseFloat($(this).val(), 10);
+        changetat();
+        calcTotals();
+    });
+    $('input[name=verbatimtype]').on('change', function(evt) {
+        verbatimtype = parseFloat($(this).val(), 10);
+        changetat();
+        calcTotals();
+    });
+
+    function changetat() {
+        if (transcriptiontype == 0.8) {
+            document.getElementById('autotat').style.display = 'none';
+            document.getElementById('humantat').style.display = 'block';
+            document.getElementById('verbatimtype23').style.display = 'block';
+        }
+        if (transcriptiontype == 0.1) {
+            document.getElementById('autotat').style.display = 'block';
+            document.getElementById('humantat').style.display = 'none';
+            document.getElementById('verbatimtype23').style.display = 'none';
+
+        }
+    }
+
+    function calcTotals() {
+        var hours = parseInt(nhr)
+        var minutes = parseInt(nmin)
+        var hoursT = parseInt(nhrT)
+        var minutesT = parseInt(nminT)
+        var ttype = parseFloat(transcriptiontype);
+        var transltype = parseFloat(translationtype);
+        var catego = parseFloat(category);
+        var difficult = parseFloat(difficultaudio);
+        var verbattype = parseFloat(verbatimtype);
+        var ttime = parseFloat(turnaroundtime);
+        var captions = parseFloat(captions1);
+        var captionsT = parseFloat(captions1T);
+
+        if (ttype == 0.8)
+            cost = (hours * ttype * 60) + (minutes * ttype) + (hours * ttime * 60) + (minutes * ttime) + (hours * captions * 60) + (minutes * captions) + (hours * catego * 60) + (minutes * catego) + (hours * difficult * 60) + (minutes * difficult) + (hours * verbattype * 60) + (minutes * verbattype)
+        if (ttype == 0.1)
+            cost = (hours * ttype * 60) + (minutes * ttype) + (hours * captions * 60) + (minutes * captions)
+        $("#total1").text('Order Value: $' + cost.toFixed(2)).css("font-weight", "bold");
+
+
+    }
+});
+
+$(window).load(function() {
+    var selectlanguagedest = 0.12;
+    $("#selectlanguagedest").on('input', function() {
+        valhere = $("#selectlanguagedest").val();
+        $('#expertprice').text(valhere)
+    });
+});
+</script>
+{% endblock content %}

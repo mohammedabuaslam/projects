@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Download Audio</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="container mt-5">
+    <div class="section-title">
+        <h2>Download Audio</h2>
+    </div>
+    <form action="{% url 'downloadaudio' %}" method="post" onsubmit="ShowLoading()">
+        <div class="container text-center">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                    <h5 class="card-title mb-5">Please enter the name of the audio you want to download with extension (Eg. 16tf94.mp3)</h5>
+                    <div class="text-center">
+                        <input type="text" class="form-control" id="filename" name="filename" placeholder="Name of the audio">
+                    </div>
+                    <div class="text-center mt-4"><button id="subm" onclick="this.blur();" class="btn btn-primary" type="submit">Download</button></div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+placingordernow = '<svg xmlns="http://www.w3.org/2000/svg" class="waveheight" viewBox="0 0 76 26"><g id="audio-wave" data-name="audio-wave"><rect id="wave-5" class="wave" x="32" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4" class="wave" x="24" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3" class="wave" x="16" width="4" height="26" rx="2" ry="2" /><rect id="wave-2" class="wave" x="8" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1" class="wave" y="9" width="4" height="8" rx="2" ry="2" /><rect id="wave-5-2" data-name="wave-4" class="wave" x="72" y="7" width="4" height="12" rx="2" ry="2" /><rect id="wave-4-2" data-name="wave-5" class="wave" x="64" y="2" width="4" height="22" rx="2" ry="2" /><rect id="wave-3-2" data-name="wave-3" class="wave" x="56" width="4" height="26" rx="2" ry="2" /><rect id="wave-2-2" data-name="wave-2" class="wave" x="48" y="5" width="4" height="16" rx="2" ry="2" /><rect id="wave-1-2" data-name="wave-1" class="wave" x="40" y="9" width="4" height="8" rx="2" ry="2" /></g></svg>'
+
+var mybutton = document.getElementById("subm");
+
+function ShowLoading() {
+    mybutton.innerHTML = placingordernow
+}
+</script>
+{% endblock content %}

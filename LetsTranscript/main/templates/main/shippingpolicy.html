@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>shipping policy</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="container shadow-sm p-3 mt-2 mb-5 bg-body rounded">
+    <div class="section-title mt-4">
+        <h2>Our Shipping Policy</h2>
+    </div>
+    <h4 class="fw-bold">Are any orders shipped to the customers physically? </h4>
+    <p>
+        Lets Transcript does not deal with any form of physical shipment of products. When a user places an order, the virtual shipping details are sent to the customer on the registered email.
+        When the order is processed, an email is sent to the user with order/shipping details with instructions from where the user can download the order invoice and services related to the order.
+    </p>
+    <div class="text-center"><a href="{% url 'contact-us' %}" class="btn btn-info">Contact Us</a></div>
+</div>
+{% endblock content %}

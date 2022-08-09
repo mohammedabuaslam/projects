@@ -1,0 +1,67 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Blog</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section id="services" class="services section-bg">
+    <div class="container">
+        <div class="section-title">
+            <h1>Blogs</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-blue">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/trans.png">
+                    <h4 class="mt-5"><a href="category/transcription/">Transcription</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-orange ">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/podcast.jpg">
+                    <h4 class="mt-5"><a href="category/podcasting/">Podcasting</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-pink">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/captionsandsubtitles.jpg">
+                    <h4 class="mt-5"><a href="category/captions-&-subtitles/">Captions and Subtitles</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-yellow">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/audiovideoseo.jpg">
+                    <h4 class="mt-5"><a href="category/seo/">Audio Video SEO</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-red">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/marketresearch.jpg">
+                    <h4 class="mt-5"><a href="category/marketresearch/">Market Research</a></h4>
+                </div>
+            </div>
+            <!-- <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="icon-box iconbox-teal">
+                    <img class="card-img-top" src="{{MEDIA_URL}}/media/static/assets/img/blog/uncategorised.jpg">
+                    <h4 class="mt-5"><a href="category/uncategorized/">Uncategorized</a></h4>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</section>
+<style type="text/css">
+.card-img-top {
+    height: 12.5rem;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 400ms ease-out;
+}
+</style>
+{% endblock content %}

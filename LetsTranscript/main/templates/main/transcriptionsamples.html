@@ -1,0 +1,188 @@
+{% extends "main/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.plyr.io/1.6.16/plyr.css">
+<script src="https://cdn.plyr.io/1.6.16/plyr.js"></script>
+{% endblock head %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Samples</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class="section-title mt-4">
+    <h2>Samples</h2>
+</div>
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded container">
+    <div class="js-plyr mt-4">
+        <audio id="player">
+            <source src="../static/assets/audio/sample.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center mb-3">
+        <img onclick="document.getElementById('player').currentTime-=10.0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACIklEQVRIie3Wv2+NURgH8I+yCCUSg7YM1Ua7+BUGf4KEq9bqakEnOhi7sFtEG5NINFqCaDeTSQwSCQZFBBEJacsg/eUazrnum5Pb2/u+Vzr1m5ycnOd9vs/3nPM+5zmHdawRNuTw3YPTOI59aIv2T/iASTzE52YmNJwI3sQCyqu0RYyivahwOYr34UccL+AO+tGFLbH1RNsY5qPvT5SKCmfbA3Q2wNuLichZxmAzwk/yknEJS1E818rTFQ/Xd19RvIw51UTMLVxU/F7kjhTgNoUuIeEW0ZH9sDFHkDacw1E8y9gHcAGH8Aq/M99mcAD78Q7Pc05cSfVYfc/Yr0bbyyj4FpsT7kD0eZxXFG7jCj5mhLdFsRdowcUocDbh9kT7m3oCT2NLsSP20xnhIzHg9Tg+FsfXEm6ralH5h02J08Ho2IpfGftMjclU8uNP0qcxa6IlGX+NfSPnblooEofjuNK/TvwqdftLvWBTwrb01xHLJtdo9J8SduUbtiecmsmVrngy9n0rCI/hVmZ8HpeF63Vc+M9zCacSa1Id7BYO+7xQ8JtFtxUKSC1Utm/iPwjfj7FuNOLcLqR+WSj0RTEUY8xiV6OkknClLRUUH1K9Fk/kJQ9GYlm4Zboa4HSrbu+yUMML4aSQpWUhSe7iDHqxNbZe4ciMq77LZhVYaYqdQhlc1Nhjb0QDBSjP87YDp4Rd6BRen4Tn7XvhnD6ySoVax5rjL0HWqQFaEWrCAAAAAElFTkSuQmCC" alt='rewind' /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img onclick="document.getElementById('player').currentTime+=10.0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAACIUlEQVRIie3Wu2+PYRQH8A+1CCUSg94Sl4auYjHwF+hlRY0mlwEdjF3YGVzKJIamLUG0sZj8ARKDBA2RkkZC3Aaptmp4zuv35tXL+/7adOo3eXJyznvO+T7veW6HNawS1lXwbUMPjmBn6DCJ13iCB5hYqcm14BZmMLfE+I0BtObi++sh7caPSDqFQRzFPmyKsQfH49t0+H6J2P7QK+EsZiNwCLtKxOzGQ/9XojS6g3QG56oESvvmaT3ELWrlrUpKrbyViW+rlXclSEsRt0nlnVJuTevGhoLegwaM4F3hWxNOxKSu5uy9OIwPuC7t6MoYk0pzrGDvioRz+JyzXw7bC/zCG2ysh/hVJNpbsN/FJbzPEW8JsudYj/MRe7Ie4mw3Nxbs20KO54gPhO+10A+GfmWevM9i/ENxjRfC13lsDSH/FGQxZyMO4WfeuL7gNBmyqcRkxqUTsD/0TL4s+DWH/LhYsoU2V54sv7kGwn9MqsonbC3E9IbP47yx+MejIXsWIB7EnZx+Chela3JYWufvhZgs16hF0Cq9MFPShb9ctEeuaekqXhRZ+UZWgPh+5LpRxrlZ7VhdWAZpX+T4hh1lg7rUnsV6yPsidlZqlSrhjFojcE/qNJZCu1p5Z3G6KmmGTmmXZq3PkNTmdGBzjA7pyAxLPVdW3sp/WsR26RrM+qnFxjRuKnEBVWlvW6SWqFN6q7P2dgJvpXP6yBI31BpWHX8B37eoseOZhn0AAAAASUVORK5CYII=" alt='forward' /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img onclick="document.getElementById('player').playbackRate-=0.5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABA0lEQVRIie3Vvy4EURiG8Z/dhkSiVlFqKCj9qShcgEKi5DKIRONalBqJS9AhKpHoUIkSWaPYGTl7dsyc2exUPMnJNM/7fWfmzHzDPzV0E70Z7KKDpwpvFRt4wGfqJhZwjwy9vEjMBE7wlXuXqcW38JqHinUYOVM4i5xeSvEDfETBDMeBM4urEierKtzF6S+hsMESHiu8UqZxXhEqGmzjrcYbYh63NaEMd/rPuM4bYAUvCaEma4DrMRf/adDJr5WnPg6W8dzGHYTM4SYhONIhF7T6mha0+qGF7GtpVIRsGh52R5Ez8rArCMf1O9ZLnHhcXzRpQP+Hs4fFGm8NO5hs2uAP8w0OL9wH+i7PmAAAAABJRU5ErkJggg==" alt='slow' /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img onclick="document.getElementById('player').playbackRate+=0.5" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABAUlEQVRIie3VO0oEQRSF4c9HoCauQDQ0MdFw0EiNTTRyCboERXAVbsEVDG5CUYwMBEHQaBITYbQMagqHpqe7q7ExmQMXOjhVP3Vv1WmmqtHc2PcSjrCMl4o1m9jHMz5zYDcI+MYlZko82/ga+Z6wngMYjhamusZiwXNW8Ayw1xQQSuoWK2OeixLPEKdtAQGv2KoApLrCfBtAwAcOagABffGSZAOCONzHBr4HrLUB5NS737Z2Agi4g9lJ/foDhS5P8Ca++CxA0yHfY3XSkf7lmnb60JpGxUnVxkkpJVOVhd15wTPAbpPNif0LquN6R/wHBC3iegGH6NX4NnCsYphTZekHMhDciySWU5cAAAAASUVORK5CYII="/ alt='fast'>
+    </div>
+</div>
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                    <li onclick="showhuman()" data-filter=".filter-human" class="filter-active">Human Generated</li>
+                    <li onclick="showautomated()" data-filter=".filter-automated">Automated</li>
+                    <li onclick="showclean()" data-filter=".filter-clean">Clean Verbatium</li>
+                    <li onclick="showfull()" data-filter=".filter-full">Full Verbatium</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row portfolio-container">
+            <div id="human" class="col-lg-12 col-md-12 portfolio-item filter-human">
+                <div class="portfolio-human">
+                    <div class="shadow p-3 mb-5 bg-white rounded overflow-auto">
+                        <p><strong>Interviewer 1:</strong>&nbsp; Magnus Carlsen. Congratulations and yet another victory. A dramatic end to the day. How do you feel?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I feel very good about the end. Obviously, it was day that became very, very tough. Obviously, and the tie break as well was a very, very nervous affair. But, you know, I prevailed in the end, so I'm very happy.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; You&rsquo;ve managed to prevail in the end. But how did you feel after that first game when it was a draw and --</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; No I think draw in the first game makes people a bit nervous, like, you don't know what's going to happen. It's all very much in the balance. So in the second game, I kind of wanted to play it safe, and then I just made a very simple mistake in the opening and position was quite equal. And then I think he took some chances that he didn't need to take by not exchanging queens. And then after I gave up upon I think it's a very strange practical situation because, you know it's going to be decided right there and then it's not going to end in a draw for both players it's unpleasant, but yeah.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; So how does this benchmark to ST Petersburg, you've repeated what you've done in ST Petersburg, you&rsquo;ve repeated what you've done the year before. How do you feel? A double hat trick?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, in ST Pittsburgh I only got one title. So, no, I would say I'm very, very pleased obviously with their performance, you know, everybody makes mistakes. A lot of the games were rough but at the end of the day, the result is what counts and I cannot be unhappy with that.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; I'm just wondering, do you keep track of all the wins that you&rsquo;ve had? Of all the events which you&rsquo;ve won?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Not all of the events which I won, but obviously world championships I keep track of.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Thank you.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; Magnus, you&rsquo;ve won all the events now and you are a greatest sportsmen here again. And now I want to ask you what's the secret? Why?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I think there are margins for example here, Nakamura had a great tournament and with some luck he could have had won it outright, like, for instance, my game against Jerushar, if I hadn't got that extra half point I wouldn't have made it to the tiebreak. So there are obviously some margins, some luck but you need to be good to have that luck and that I certainly was.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And what did you feel before this championship?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Before the championship, I was not so sure especially about the rapid chess. I didn't really know what to expect and then, for the blitz, I was very, very optimistic. Yesterday and today, both were tough days, but I think in general I always had a very good chance to win.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And with whom you want to play again now.</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, everybody who's good, I'm more than willing to play. I think both championships were tough, but today again, it was a very, very tough fights I have to say with Nakamura. He made a fantastic score 7.5 out of 9 today. And I only barely managed to a German intermix I would say today was huge.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; <strong>[Inaudible]</strong></p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I don&rsquo;t know.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Are you satisfied with how the tournament was organized in the event?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Yeah, I think everything's been good. So I have no complaints whatsoever.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; On a more general note we've been playing here in a football stadium, were in Luzhniki Stadium which is a history place and there's a lot of people cheering you. Would you like to play a tournament or a match at a football pitch with all the crowds around you shouting live? How would you feel about that?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I think for just chess some quiet is needed, unfortunately. But I enjoy the fact that there are there are lots of chess fans sir.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="automated" class="col-lg-12 col-md-12 d-none portfolio-item filter-automated">
+                <div class="portfolio-automated">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <p><strong>Speaker_1: </strong>&nbsp;Magnus Carlsen. Congratulations. And yet another victory a dramatic. And today, how do you feel?<br /> <br /> <strong>Speaker_0: </strong>&nbsp;I feel very good about the end. Obviously, it was day that became very, very tough. Um, obviously, on bond tiebreakers. Well, was, uh it was a very, very nervous affair. But, you know, I prevailed in the end, so I'm very happy.<br /> <br /> <strong>Speaker_1: </strong>&nbsp;Uh, you managed to prevail in the end. But how did you feel after that first game when it was a draw and,<br /> <br /> <strong>Speaker_0: </strong>&nbsp;um, no e Think drop in the first game makes but people a bit nervous, like you don't know what's gonna happen. It's It's all very much in the balance. Um, so in the second game, I kind of wanted to play it safe, and then I just made a very simple mistake in the opening, Uh, onda position was quite equal on Ben. I think he, um, took some chances that he didn't need to take by, uh, not exchanging queens on bond. Then after I gave up upon I think, um, it's a very strange, practical situation because, you know, it's gonna be decided right there, and then it's not gonna end in a in a draw for both players. It's It's unpleasant, but yeah.<br /> <br /> <strong>Speaker_1: </strong>&nbsp;So how does this benchmark to ST Petersburg? You've repeated what you've done in ST Petersburg. You repeated what you've done the year before. How do you feel? A double head trick?<br /> <br /> <strong>Speaker_0: </strong>&nbsp;Well, in South Pittsburgh, I only got one title. So, um, no, I would say, um very, very pleased. Obviously, with performance. You know, everybody makes mistakes. A lot of the games where, uh, were rough, but, uh, at the end of the day, the result is what counts. And e uh, yeah, cannot be, uh, be unhappy with that. I'm just<br /> <br /> <strong>Speaker_1: </strong>&nbsp;wondering, do you keep track of all the winds that you had of all the events which you want?<br /> <br /> <strong>Speaker_0: </strong>&nbsp;Not all of the events which I want, but obviously world championships, I could track number. Thank you, E A. What wants there on your greatest sportsmen Here again on now I want to ask you what's the secret? Why e think there are There are margins for for example here. No camera had had the great tournament, and with some luck, he could have had wanted our rights. Like, for instance, my game against, uh, Jerusha. If I hadn't got that extra half point I would have. Um I wouldn't have made it thio tiebreak. So there are obviously some some margins, some luck. But you need thio to be good. Thio have that luck and that I certainly waas e before the temperature up. I was not so sure. Especially about the rapid chess. I didn't really know what to mhm to expect on then, for for the blitz. I was very, very optimistic. Um, yesterday on today, both were tough days, but I think in general I always had a very good chance to win e again. Uh, everybody who who's good? I'm more than willing to play e think, uh, both championships were tough, but today again, it was a very, very tough fights, I have to say with Nakamura, hey, made a fantastic score 7.5 out of nine today, Andi. I only barely managed to thio regimen in inter bricks. I would say today was huge. E don't know.<br /> <br /> <strong>Speaker_1: </strong>&nbsp;Are you satisfied with how the tournament was organized in the event<br /> <br /> <strong>Speaker_0: </strong>&nbsp;e think everything's been, uh, everything's been good. So I have, uh, have no no complaints whatsoever<br /> <br /> <strong>Speaker_1: </strong>&nbsp;on a more general, we're playing here. We've been playing here in a football stadium were in Luzhniki Stadium, which is a history place, and there's a lot of people cheering you. Would you like to play a tournament or a match at a football pitch with all the crowds around you shouting live? How would you feel<br /> <br /> <strong>Speaker_0: </strong>&nbsp;about that? I think, for for just some, some quiet is needed, unfortunately, But, um, I enjoy the fact that there are there are lots of chest cancer.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="cleanv" class="col-lg-12 col-md-12 d-none portfolio-item filter-clean">
+                <div class="portfolio-clean">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <p><strong>Interviewer 1:</strong>&nbsp; Magnus Carlsen. Congratulations and yet another victory. A dramatic end to the day. How do you feel?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I feel very good about the end. Obviously, it was day that became very, very tough. Obviously, and the tie break as well was a very, very nervous affair. But, you know, I prevailed in the end, so I'm very happy.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; You&rsquo;ve managed to prevail in the end. But how did you feel after that first game when it was a draw and --</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; No I think draw in the first game makes people a bit nervous, like, you don't know what's going to happen. It's all very much in the balance. So in the second game, I kind of wanted to play it safe, and then I just made a very simple mistake in the opening and position was quite equal. And then I think he took some chances that he didn't need to take by not exchanging queens. And then after I gave up upon I think it's a very strange practical situation because, you know it's going to be decided right there and then it's not going to end in a draw for both players it's unpleasant, but yeah.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; So how does this benchmark to ST Petersburg, you've repeated what you've done in ST Petersburg, you&rsquo;ve repeated what you've done the year before. How do you feel? A double hat trick?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, in ST Pittsburgh I only got one title. So, no, I would say I'm very, very pleased obviously with their performance, you know, everybody makes mistakes. A lot of the games were rough but at the end of the day, the result is what counts and I cannot be unhappy with that.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; I'm just wondering, do you keep track of all the wins that you&rsquo;ve had? Of all the events which you&rsquo;ve won?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Not all of the events which I won, but obviously world championships I keep track of.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Thank you.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; Magnus, you&rsquo;ve won all the events now and you are a greatest sportsmen here again. And now I want to ask you what's the secret? Why?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I think there are margins for example here, Nakamura had a great tournament and with some luck he could have had won it outright, like, for instance, my game against Jerushar, if I hadn't got that extra half point I wouldn't have made it to the tiebreak. So there are obviously some margins, some luck but you need to be good to have that luck and that I certainly was.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And what did you feel before this championship?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Before the championship, I was not so sure especially about the rapid chess. I didn't really know what to expect and then, for the blitz, I was very, very optimistic. Yesterday and today, both were tough days, but I think in general I always had a very good chance to win.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And with whom you want to play again now.</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, everybody who's good, I'm more than willing to play. I think both championships were tough, but today again, it was a very, very tough fights I have to say with Nakamura. He made a fantastic score 7.5 out of 9 today. And I only barely managed to a German intermix I would say today was huge.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; <strong>[Inaudible]</strong></p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I don&rsquo;t know.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Are you satisfied with how the tournament was organized in the event?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Yeah, I think everything's been good. So I have no complaints whatsoever.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; On a more general note we've been playing here in a football stadium, were in Luzhniki Stadium which is a history place and there's a lot of people cheering you. Would you like to play a tournament or a match at a football pitch with all the crowds around you shouting live? How would you feel about that?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I think for just chess some quiet is needed, unfortunately. But I enjoy the fact that there are there are lots of chess fans sir.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="fullv" class="col-lg-12 col-md-12 d-none portfolio-item filter-full">
+                <div class="portfolio-full">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <p><strong>Interviewer 1:</strong>&nbsp; Magnus Carlsen. Congratulations and yet another victory. A dramatic end to the day. How do you feel?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I feel very good about the end. Obviously, it was day that became very, very tough. Um, obviously, and the tie break as well was, uh, it was a very, very nervous affair. But, you know, I prevailed in the end, so I'm very happy.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Uh, you&rsquo;ve managed to prevail in the end. But how did you feel after that first game when it was a draw and --</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; um, no I&rsquo;ve - I think draw in the first game make people a bit nervous, like, you don't know what's going to happen. It's - it's all very much in the &ndash; in the balance. Um, so in the second game, I kind of wanted to play it safe, and then I just made a very simple mistake in the opening, uh, and position was quite equal. And then I think he, um, took some chances that he didn't need to take by, uh, not exchanging queens. And then after I gave up upon I think, um, it's a very strange practical situation because, you know it's going to be decided right there, and then it's not going to end in a - in a draw for both players it's - it's unpleasant, but yeah.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; So how does this benchmark to ST Petersburg, you've repeated what you've done in ST Petersburg, you&rsquo;ve repeated what you've done the year before. How do you feel? A double hat trick?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, in ST Pittsburgh I only got one title. So, um, no, I would say, um, very, very pleased obviously with their performance, you know, everybody makes mistakes. A lot of the games where, uh, were rough but, uh, at the end of the day, the result is what counts and I, uh, yeah, I cannot be, uh, be unhappy with that.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; I'm just wondering, do you keep track of all the wins that you had? Of all the events which you&rsquo;ve won?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Not all of the events which I won, but obviously world championships I keep track of.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Thank you.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; Magnus, you&rsquo;ve won all the events now and you are a greatest sportsmen here again. And now I want to ask you what's the secret? Why?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Um, I think there are - there are margins for - for example here, Nakamura had - had the great tournament and with some luck he could have had won it outright, like, for instance, my game against, uh, Jerushar, if I hadn't got that extra half point I would have, um, I wouldn't have made it to &ndash; to the tiebreak. So there are obviously some - some margins, some luck but you need to - to be good to have that luck and that I certainly was.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And what did you feel before this championship?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Uh, before the championship, I was not so sure especially about the rapid chess. I didn't really know what to, mhm, to expect and then, for - for the blitz, I was very, very optimistic. Um, yesterday and today, both were tough days, but I think in general I always had a very good chance to win.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; And with whom you want to play again now.</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Well, everybody who - who's good, I'm more than willing to play. I think, uh, both championships were tough, but today again, it was a very, very tough fights I have to say with Nakamura. He made a fantastic score 7.5 out of 9 today. And I only barely managed to &ndash; to a German in - intermix I would say today was huge.</p>
+                        <p><strong>Interviewer 2:</strong>&nbsp; <strong>[Inaudible]</strong></p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I don&rsquo;t know.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; Are you satisfied with how the tournament was organized in the event?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; Yeah, I think everything's been, uh, everything's been good. So I have, uh, have no - no complaints whatsoever.</p>
+                        <p><strong>Interviewer 1:</strong>&nbsp; On a more general note we're playing here - we've been playing here in a football stadium, were in Luzhniki Stadium which is a history place and there's a lot of people cheering you. Would you like to play a tournament or a match at a football pitch with all the crowds around you shouting live? How would you feel about that?</p>
+                        <p><strong>Mangnus Carlsen:</strong>&nbsp; I think for - for just chess some - some quiet is needed, unfortunately. But, um, I enjoy the fact that there are there are lots of chess fans sir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+plyr.setup(document.querySelectorAll('.js-plyr'), {});
+
+function showhuman() {
+    humandiv = document.getElementById('human');
+    automateddiv = document.getElementById('automated');
+    cleanvdiv = document.getElementById('cleanv');
+    fullvdiv = document.getElementById('fullv');
+    automateddiv.classList.add("d-none");
+    humandiv.classList.remove("d-none");
+    cleanvdiv.classList.add("d-none");
+    fullvdiv.classList.add("d-none");
+}
+
+function showautomated() {
+    humandiv = document.getElementById('human');
+    automateddiv = document.getElementById('automated');
+    cleanvdiv = document.getElementById('cleanv');
+    fullvdiv = document.getElementById('fullv');
+    automateddiv.classList.remove("d-none");
+    humandiv.classList.add("d-none");
+    cleanvdiv.classList.add("d-none");
+    fullvdiv.classList.add("d-none");
+}
+
+function showclean() {
+    humandiv = document.getElementById('human');
+    automateddiv = document.getElementById('automated');
+    cleanvdiv = document.getElementById('cleanv');
+    fullvdiv = document.getElementById('fullv');
+    automateddiv.classList.add("d-none");
+    humandiv.classList.add("d-none");
+    cleanvdiv.classList.remove("d-none");
+    fullvdiv.classList.add("d-none");
+}
+
+function showfull() {
+    humandiv = document.getElementById('human');
+    automateddiv = document.getElementById('automated');
+    cleanvdiv = document.getElementById('cleanv');
+    fullvdiv = document.getElementById('fullv');
+    automateddiv.classList.add("d-none");
+    humandiv.classList.add("d-none");
+    cleanvdiv.classList.add("d-none");
+    fullvdiv.classList.remove("d-none");
+}
+</script>
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% extends "main/base.html" %}
+{% block head %}
+<meta name="title" content="Audio/Video Transcription Services - Convert Mp3, Mp4 to Text">
+<meta name="og:title" content="Audio/Video Transcription Services - Convert Mp3, Mp4 to Text">
+<meta name="og:description" content="LetsTranscript's automated and human-generated transcription services convert audio (MP3) or video (MP4) to text in 120+ languages and 45+ formats with 99% accuracy.">
+<meta name="description" content="LetsTranscript's automated and human-generated transcription services convert audio (MP3) or video (MP4) to text in 120+ languages and 45+ formats with 99% accuracy.">
+<meta name="keywords" content="videos,Video traffic,internet,tailor,produce, captions, subtitles,videos accessible,hard of hearing,audio content, movies,speakers,subtitling production,search engines,scan,text,engagement,watching,foreign languages,increase audience,subtitling services,captioning service">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+{% endblock head %}
+{% block content %}
+<section id="hero" class="d-flex align-items-center">
+    <div class="container-fluid" data-aos="fade-up">
+        <div class="row text-center justify-content-center">
+            <h1 class="text-dark">Audio/Video Transcription Services <br> Convert Mp3 - Mp4 to Text</h1>
+            <h2 class="uyshjgdiku text-dark">Order Online ($0.6 per audio minute)</h2>
+            <div><a href="{% url 'upload' %}" class="btn-get-started scrollto">Upload Files</a></div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <h2 class="h4 bold mt-5">What is the definition of transcription services?</h2>
+            <p class="uyshjgdiku mt-5">
+                Transcription is the process of converting speech to text. It's possible to do this by converting audio/video recordings into written format.
+            </p>
+            <p class="uyshjgdiku">
+                Transcribing audio is a simple approach to think about the process. Interviews are conducted by audio/video recording, with the interviewer serving as both questioner and recorder. Then the audio/video files are converted into text format known as "transcript". This is the simplest scenario, while there are more complex transcription services like medical documents dictated by physicians, depositions by lawyers, and so on and so forth.
+            </p>
+            <p class="uyshjgdiku">
+                LetsTranscript is a pioneer in the provision of low-cost, accurate transcription services to businesses. Our services cover the whole spectrum of transcription needs, from general, medical, academic, legal, and investigation transcription to general transcription and all in between.
+            </p>
+            <h2 class="h4 bold">A Simple Method for Creating Subtitles</h2>
+            <p class="uyshjgdiku">
+                You don't have to spend time or money on captioning when using LetsTranscript. Whatever your role, the subtitle tool offered by LetsTranscript will relieve you of the burden of captioning your videos and other deliverables.
+            </p>
+            <p class="uyshjgdiku">
+                These days, it is nearly impossible to watch a video without seeing the subtitles and/or captions. Adding video subtitles makes your video more accessible to people with disabilities. The subtitles, on the other hand, make it simple for those who watch your video without sound to understand what you're saying.
+            </p>
+            <p class="uyshjgdiku">
+                Subtitles or video captions are terms that are frequently used in the same sentence. But there's a distinction to be made. What you see on screen is accompanied by text in the same language as what is being said. If the original speech was delivered in English, the subtitles would be called English Subtitles. Underlining is the translation of what you see on the screen into another language.  Captions and foreign subtitles for your video may both be created by LetsTranscript using the same service.
+            </p>
+            <h2 class="h4 bold">A Simple Method for Creating Subtitles</h2>
+            <ol class="uyshjgdiku mb-5">
+                <li>Reducing the total cost of transcription is a top priority because of the time consumption and volumes that can be assigned to a professional team.</li>
+                <li>Transcribe proofread and customize the transcript to ensure the files are accurate and formatted.</li>
+                <li>Save a lot of time and money by having your transcription work done by a professional.</li>
+            </ol>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-4">
+            <div class="text-center">
+                <img class="col-md-12 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/march/trp.png" alt="Card image cap">
+            </div>
+            <div class="text-center">
+                <img class="col-md-12 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/march/ec.webp" alt="Card image cap">
+            </div>
+            <div class="card mt-5">
+                <div class="text-center">
+                    <img class="gifimage2 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/univ/shield.png" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">HIPAA COMPLIANCE</h5>
+                    <p class="card-text uyshjgdiku mt-3 text-center">
+                        In the transcription industry, we recognize the need of maintaining HIPAA compliance. At LetsTranscript, we understand the need of protected health information (PHI) very strictly.
+                    </p>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="yrnirhjeh">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Get Started</h2>
+                <a href="{% url 'upload' %}" class="btn bg-white mt-3 mb-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Order Now</a>
+                <h3 class="text-white h5">★★★★★ 4.9/5 &nbsp; | &nbsp;<a href="#" class="text-white h5"><u>1846 customer reviews</u></a></h3>
+            </div>
+            <div class="col-md-6 text-center mt-5 mb-5"><br>
+                <h2 class="text-center text-white font-weight-bold">Have a large project?</h2>
+                <a href="{% url 'contact-us' %}" class="btn bg-white mt-3 font-weight-bold text-dark btn-lg active" role="button" aria-pressed="true">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

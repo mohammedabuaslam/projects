@@ -1,0 +1,62 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Add Credits &nbsp;</li>
+                (Available Credits: $ {{ user.credits }})
+            </ol>
+        </div>
+    </div>
+</section>
+<div class=" container mt-5">
+    <div class="section-title">
+        <h2>Add money with Paypal</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="shadow-lg p-3 mb-5  bg-white rounded">
+                <p class="card-title">Please enter the amount you want to add to your wallet <br> USD ($):</p>
+                <input type="number" required class="input form-control form-control-lg" id="amount"><br>
+                <div class="text-center" id="paypal-button"></div>
+                <br>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<script type="text/javascript" src="https://checkout.razorpay.com/v1/razorpay.js"></script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+var amt = 0;
+
+$("#amount").on('input', function() {
+    window.amt = $("#amount").val();
+});
+var CREATE_PAYMENT_URL = '/users/addcredits/processing/' + amt + '/';
+var EXECUTE_PAYMENT_URL = '/users/addcredits/execute/' + amt + '/';
+paypal.Button.render({
+    env: 'production',
+    commit: true,
+    payment: function() {
+        return paypal.request.post('/users/addcredits/processing/' + amt + '/', amt).then(function(data) {
+            return data.paymentID;
+        });
+    },
+    onAuthorize: function(data) {
+        return paypal.request.post('/users/addcredits/execute/' + amt + '/', {
+            paymentID: data.paymentID,
+            payerID: data.payerID,
+        }).then(function(res) {
+            window.location.replace("/users/walletpaymentprocessing/");
+
+        });
+    }
+
+}, '#paypal-button');
+</script>
+{% endblock content %}

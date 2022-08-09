@@ -1,0 +1,174 @@
+{% extends "main/base.html" %}
+{% block head %}
+{% for post in blogs %}
+<meta name="title" content="{{ post.metatitle }}">
+<meta name="description" content="{{ post.metadescription }}">
+<meta name="keywords" content="{{ post.metakeywords}}">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<meta name="msvalidate.01" content="9AA8A69BE44ACB2BE1865AA094802DDF" />
+{% endfor %}
+{% endblock head %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container mt-4 mb-4">
+    {% for post in blogs %}
+    <div class="row">
+        <h1 class="mt-5 mb-5 text-center">{{post.title|title}}
+            <hr class="mt-5">
+        </h1>
+        <div class="row">
+            <div class="col-md-3 text-center d-none d-sm-block">
+                {{post.covercontent | safe}}
+            </div>
+            <div class="col-md-9">
+                <!-- <img alt="LetsTranscript" class="col-md-12" src="https://www.rev.com/blog/wp-content/uploads/2019/11/How-to-End-an-Interview-Questions-and-Tips.jpg"> -->
+                <img alt="LetsTranscript" class="col-md-12" src="/media/{{post.coverimage}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <a href="/" class="oymdirhuyd">LetsTranscript › </a><a href="/blog/" class="oymdirhuyd">Blog › </a><a href="/blog/category/{{post.niche}}/" class="oymdirhuyd">{{post.niche | title}} › </a><a href="/blog/{{post.url}}" class="oymdirhuyd">{{post.title | title}}</a>
+            </div>
+        </div>
+        <div class="col-md-3 d-none d-sm-block">
+            <div class="sticky-top stickytopcustom"><br><br><br>
+                <div class="text-center">
+                    <a href="" class="rounded-pill btn btn-primary mt-5">ORDER TRANSCRIPTS</a>
+                    <img class="col-md-12 mt-3" src="{{MEDIA_URL}}/media/static/assets/img/march/trp.png" alt="Card image cap">
+                    <img class="col-md-12 mt-5" src="{{MEDIA_URL}}/media/static/assets/img/march/ec.webp" alt="Card image cap">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 j54jfdt8hd">
+            <p class="">{{ post.content | safe }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="shadow-lg p-3 mt-5 mb-5 bg-white rounded d-none d-sm-block urkdhrna">
+        <div class="row">
+            <div class="col-md-9">
+                <h5 class="utnlsdbfjrn p-3">
+                    Affordable, fast transcription. <br>100% Guaranteed.
+                </h5>
+            </div>
+            <div class="col-md-3 text-center my-auto">
+                <a href="" class="rounded-pill btn btn-primary yrjndhrujsj">GET STARTED</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="d-block d-sm-none" style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-22.85,76.48 C149.99,150.00 244.07,-93.23 523.98,55.77 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #a8b7c5;"></path></svg></div>
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Lato|Raleway&subset=latin,latin-ext);
+
+
+/*a{
+    color: black;
+    
+}*/
+
+p,
+ul,
+li {
+    /*color: black;
+    font-size: 17px;*/
+    font-size: 18px !important;
+    line-height: 32px !important;
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+}
+
+.utnlsdbfjrn {
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.oymdirhuyd {
+    color: #9b9b9b;
+}
+
+.yrjndhrujsj {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    background-image: linear-gradient(130deg, #3f00ff 0%, #8d57ff 60%);
+}
+
+.urkdhrna {
+    background-image: url("{{MEDIA_URL}}/media/static/assets/img/templates/last.svg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+}
+
+h1 {
+    color: #000 !important;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 58px;
+}
+
+/*.jfsdlrdkjh {
+    font-family: 'Raleway', sans-serif;
+}*/
+
+.stickytopcustom {
+    position: sticky;
+    z-index: 000;
+}
+
+.uyshjgdiku435 {
+    color: #6a6a6a;
+}
+
+.jsfg8j4 {
+    margin-left: 4vw;
+    margin-right: 6vw;
+    z-index: -1;
+}
+
+.j54jfdt8hd {
+    color: black;
+    line-height: 1.625;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+}
+
+.j54jfdt8hd a {
+    color: black;
+    line-height: 1.625;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    text-decoration: underline;
+}
+
+.j54jfdt8hd a:hover {
+    color: #8577fb;
+    line-height: 1.625;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+</style>
+{% endblock content %}

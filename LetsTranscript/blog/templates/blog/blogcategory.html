@@ -1,0 +1,76 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+<section id="services" class="services section-bg">
+    <div class="container">
+        <div class="section-title">
+            <h1 class="text-center" id="categoryblog"></h1>
+        </div>
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mb-4">
+                <div class="icon-box iconbox-blue">
+                    <img class="card-img-top" src="../../../media/{{ post.image }}">
+                    <h4 class="mt-3"><a href="/blog/{{post.url}}">{{ post.title }}</a></h4>
+                    <p class="card-text">{{ post.shortdescription }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="text-center">
+    {% if is_paginated %}
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+        {% endif %}
+</div>
+</section>
+
+<style type="text/css">
+.card-img-top {
+    height: 12.5rem;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 400ms ease-out;
+}
+
+.widthmanager {
+    min-width: 18rem;
+    max-width: 22rem;
+}
+
+.link-color {
+    color: black;
+}
+</style>
+<script type="text/javascript">
+function capitalizeFirstLetter(str) {
+    return str[0].toUpperCase() + str.slice(1);
+}
+var ordertotal = document.getElementById("categoryblog");
+var cat = document.URL
+cat1 = cat.split('/')
+names = cat1[5]
+ordertotal.textContent = capitalizeFirstLetter(names)
+</script>
+{% endblock content %}

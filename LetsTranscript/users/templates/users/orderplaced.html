@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+{% block content %}
+<section class="breadcrumbs">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li>Order Placed</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<div class=" container mt-5">
+    <div class="section-title">
+        <h2>Order Placed</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <h5 class="card-title">Your order has been placed successfully.</h5>
+                <p>An email has been sent to you with order details. If you did not receive the email please check your spam folder and mark it as not spam.</p>
+                <div class="text-center">
+                    <a href="{% url 'contact-us' %}" class="btn btn-primary">Contact Us</a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-primary">Dashboard</a>
+                    <a href="{% url 'upload' %}" class="btn btn-success">Place another order</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock content %}
